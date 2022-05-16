@@ -1,33 +1,31 @@
 const router = require("express").Router();
-
-const { User, Post } = require("../../models");
-
+const { Post, Comment } = require("../../models");
 router.get("/", async (req, res) => {
-  const users = await User.findAll({
-    include: [Post],
+  const posts = await Post.findAll({
+    include: [Comment],
   });
-  res.json(users);
+  res.json(posts);
 });
 
 router.get("/:id", async (req, res) => {
-  const user = await User.findOne({
+  const post = await Post.findOne({
     where: {
       id: req.params.id,
     },
-    include: [Post],
+    include: [Comment],
   });
-  res.json(user);
+  res.json(post);
 });
 
 router.post("/", async (req, res) => {
-  const newUser = {
-    userName: req.body.name,
-    email: req.body.email,
-    password: req.body.password,
+  const newPost = {
+    postTitle: req.body.title,
+    postText: req.body.text,
+    userId: req.body.userId,
   };
   try {
-    const userCreate = await User.create(newUser);
-    res.json({ message: "User created!" });
+    const postCreate = await Post.create(newPost);
+    res.json({ message: "Post created!" });
   } catch (err) {
     console.log(err.message);
     res.end();
@@ -35,18 +33,18 @@ router.post("/", async (req, res) => {
 });
 
 router.put("/:id", async (req, res) => {
-  const newUser = {
-    userName: req.body.name,
-    email: req.body.email,
-    password: req.body.password,
+  const updatedPost = {
+    postTitle: req.body.title,
+    postText: req.body.text,
+    userId: req.body.userId,
   };
   try {
-    const userUpdate = await User.update(newUser, {
+    const postUpdate = await Post.update(updatedPost, {
       where: {
         id: req.params.id,
       },
     });
-    res.json({ message: "User updated!" });
+    res.json({ message: "Post updated!" });
   } catch (err) {
     console.log(err.message);
     res.end();
@@ -55,12 +53,12 @@ router.put("/:id", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
   try {
-    User.destroy({
+    Post.destroy({
       where: {
         id: req.params.id,
       },
     });
-    res.json({ message: "User deleted!" });
+    res.json({ message: "Post deleted!" });
   } catch (err) {
     console.log(err.message);
   }
