@@ -1,5 +1,7 @@
 <ul>
+    {{#each allPosts as |post|}}
     <li class="list-unstyled">
-        {{> postInfo }}
+        {{> postInfo post}}
     </li>
+    {{/each}}
 </ul>
