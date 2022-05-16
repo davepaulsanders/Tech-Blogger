@@ -9,6 +9,16 @@ router.get("/", async (req, res) => {
   res.json(users);
 });
 
+router.get("/:id", async (req, res) => {
+  const users = await User.findOne({
+    where: {
+      id: req.params.id,
+    },
+    include: [Post],
+  });
+  res.json(users);
+});
+
 router.post("/", async (req, res) => {
   const newUser = {
     userName: req.body.name,
@@ -21,6 +31,38 @@ router.post("/", async (req, res) => {
   } catch (err) {
     console.log(err.message);
     res.end();
+  }
+});
+
+router.put("/:id", async (req, res) => {
+  const newUser = {
+    userName: req.body.name,
+    email: req.body.email,
+    password: req.body.password,
+  };
+  try {
+    const userUpdate = await User.update(newUser, {
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.json({ message: "User updated!" });
+  } catch (err) {
+    console.log(err.message);
+    res.end();
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  try {
+    User.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.json({ message: "User deleted!" });
+  } catch (err) {
+    console.log(err.message);
   }
 });
 
