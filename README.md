@@ -1,1 +1,1 @@
-# Tech-Blogger
+# Tech Blogger
