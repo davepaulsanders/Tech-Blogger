@@ -4,10 +4,13 @@ const { User, Post, Comments } = require("./models");
 const sequelize = require("./config/connection.js");
 const routes = require("./controllers");
 const path = require("path");
-const app = express();
+const exphbs = require("express-handlebars");
+const hbs = exphbs.create();
 const session = require("express-session");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const PORT = process.env.PORT || 3001;
+
+const app = express();
 
 const sess = {
   secret: "Super secret secret",
@@ -22,6 +25,9 @@ const sess = {
 app.use(session(sess));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.engine("handlebars", hbs.engine);
+app.set("view engine", "handlebars");
 
 // Public folder served as static assets
 app.use(express.static(path.join(__dirname, "public")));
