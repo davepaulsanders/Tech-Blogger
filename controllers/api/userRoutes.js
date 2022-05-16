@@ -5,6 +5,7 @@ const { User, Post } = require("../../models");
 router.get("/", async (req, res) => {
   const users = await User.findAll({
     include: [Post],
+    attributes: ["userName", "email"],
   });
   res.json(users);
 });
@@ -15,6 +16,7 @@ router.get("/:id", async (req, res) => {
       id: req.params.id,
     },
     include: [Post],
+    attributes: [userName, email],
   });
   res.json(user);
 });

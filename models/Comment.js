@@ -9,7 +9,7 @@ Comment.init(
       type: DataTypes.STRING,
     },
   },
-  { sequelize, modelName: "comment" }
+  { sequelize, underscored: false, modelName: "comment" }
 );
 
 module.exports = Comment;
