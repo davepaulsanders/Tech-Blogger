@@ -3,7 +3,7 @@ const { Comment, User, Post } = require("../../models");
 
 router.get("/", async (req, res) => {
   const posts = await Comment.findAll({
-    include: [User, Post],
+    include: [{ model: User, attributes: ["userName", "email"] }, Post],
   });
   res.json(posts);
 });
@@ -13,7 +13,7 @@ router.get("/:id", async (req, res) => {
     where: {
       id: req.params.id,
     },
-    include: [User, Post],
+    include: [{ model: User, attributes: ["userName", "email"] }, Post],
   });
   res.json(post);
 });

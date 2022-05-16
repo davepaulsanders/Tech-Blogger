@@ -16,7 +16,7 @@ router.get("/:id", async (req, res) => {
       id: req.params.id,
     },
     include: [Post],
-    attributes: [userName, email],
+    attributes: ["userName", "email"],
   });
   res.json(user);
 });
