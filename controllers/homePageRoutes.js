@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { Post, User, Comment } = require("../models");
 const { all } = require("./api");
+
 router.get("/", async (req, res) => {
   const posts = await Post.findAll({
     include: [{ model: User, attributes: ["userName"] }],
@@ -9,4 +10,10 @@ router.get("/", async (req, res) => {
   res.render("homePage", { allPosts });
 });
 
+router.get("/login", (req, res) => {
+  if (req.session.loggedIn) {
+    document.location.replace("/dashboard/");
+  }
+  res.render("login");
+});
 module.exports = router;
