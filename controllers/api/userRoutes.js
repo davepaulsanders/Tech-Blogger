@@ -5,7 +5,7 @@ const { User, Post } = require("../../models");
 router.get("/", async (req, res) => {
   const users = await User.findAll({
     include: [Post],
-    attributes: ["userName", "email"],
+    attributes: ["id", "userName", "email"],
   });
   res.json(users);
 });
@@ -23,16 +23,16 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const newUser = {
-    userName: req.body.name,
+    userName: req.body.username,
     email: req.body.email,
     password: req.body.password,
   };
+
   try {
     const userCreate = await User.create(newUser);
-    res.json({ message: "User created!" });
+    res.sendStatus(200);
   } catch (err) {
     console.log(err.message);
-    res.end();
   }
 });
 

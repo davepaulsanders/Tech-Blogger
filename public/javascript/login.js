@@ -1,4 +1,5 @@
 const logIn = document.querySelector(".log-in");
+const signUp = document.querySelector(".sign-up");
 
 const handleLogIn = async (event) => {
   event.preventDefault();
@@ -20,4 +21,29 @@ const handleLogIn = async (event) => {
   }
 };
 
+const handleSignUp = async (event) => {
+  event.preventDefault();
+  const username = document.querySelector(".signup-username").value.trim();
+  const email = document.querySelector(".signup-email").value.trim();
+  const password = document.querySelector(".signup-password").value.trim();
+
+  const response = await fetch("/api/users", {
+    method: "POST",
+    body: JSON.stringify({
+      username,
+      email,
+      password,
+    }),
+    headers: { "Content-Type": "application/json" },
+  });
+
+  if (response) {
+    console.log(response);
+    document.location.replace("/dashboard");
+  } else {
+    console.log("Sorry, something went wrong");
+  }
+};
+
 logIn.addEventListener("click", handleLogIn);
+signUp.addEventListener("click", handleSignUp);
