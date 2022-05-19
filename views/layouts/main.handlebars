@@ -15,17 +15,21 @@
             <a class="x-large navbar-brand fs-1" href="/">Tech Blog</a>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link fs-5" href="#">Dashboard</a>
+                    <a class="dashboard nav-link fs-5" href="#">Dashboard</a>
                 </li>
+                {{#if loggedIn}}
                 <li class="nav-item">
-                    <a class="nav-link fs-5" href="/login">Log In</a>
+                    <a class="nav-link fs-5">Log Out</a>
                 </li>
+                {{else}}
+                <a class="nav-link fs-5" href="/login">Log In</a>
+                {{/if}}
             </ul>
         </nav>
     </header>
     <main class="container justify-content-center">
     {{{ body }}}
     </main>
- 
+ <script src="/javascript/main.js"></script>
 </body>
 </html>

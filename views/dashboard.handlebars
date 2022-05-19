@@ -1,1 +1,7 @@
-<h1>Works</h1>
+<ul class="d-flex justify-content-center row">
+    {{#each allPosts as |post|}}
+    <li class="list-unstyled col-sm">
+        {{> postInfo post}}
+    </li>
+    {{/each}}
+</ul>

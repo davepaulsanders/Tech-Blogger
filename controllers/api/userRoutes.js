@@ -30,7 +30,12 @@ router.post("/", async (req, res) => {
 
   try {
     const userCreate = await User.create(newUser);
-    res.sendStatus(200);
+    req.session.save(() => {
+      req.session.userId = validUser.id;
+      req.session.username = validUser.userName;
+      req.session.loggedIn = true;
+      res.json(validUser);
+    });
   } catch (err) {
     console.log(err.message);
   }
@@ -79,12 +84,16 @@ router.post("/login", async (req, res) => {
     return;
   }
   const validPassword = await validUser.checkPassword(req.body.password);
-  if (validUser === null) {
+  if (!validPassword) {
     res.sendStatus(404);
+    return;
   }
-  if (validPassword) {
+  req.session.save(() => {
+    req.session.userId = validUser.id;
+    req.session.username = validUser.userName;
+    req.session.loggedIn = true;
     res.json(validUser);
-  }
+  });
 });
 
 module.exports = router;
