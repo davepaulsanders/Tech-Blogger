@@ -1,4 +1,4 @@
-const logIn = document.querySelector(".log-in");
+const logInButton = document.querySelector(".log-in-submit");
 const signUp = document.querySelector(".sign-up");
 const loggedIn = document.querySelector(".logged-in");
 
@@ -16,7 +16,7 @@ const handleLogIn = async (event) => {
   });
 
   if (response.ok) {
-    document.location.reload().replace("/dashboard");
+    document.location.replace("/");
   } else {
     console.log("Wrong username/password combination");
   }
@@ -39,11 +39,11 @@ const handleSignUp = async (event) => {
   });
 
   if (response.ok) {
-    document.location.replace("/dashboard");
+    console.log("Logged in!");
   } else {
     console.log("Sorry, something went wrong");
   }
 };
 
-logIn.addEventListener("click", handleLogIn);
+logInButton.addEventListener("click", handleLogIn);
 signUp.addEventListener("click", handleSignUp);

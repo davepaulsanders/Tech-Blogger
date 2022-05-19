@@ -8,7 +8,7 @@ const handleLogOut = async (event) => {
   });
 
   if (response.ok) {
-    document.location.reload().replace("/dashboard");
+    document.location.replace("/");
   }
 };
 

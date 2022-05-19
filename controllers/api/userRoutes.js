@@ -88,12 +88,12 @@ router.post("/login", async (req, res) => {
     },
   });
   if (validUser === null) {
-    res.sendStatus(404);
+    res.sendStatus(400);
     return;
   }
   const validPassword = await validUser.checkPassword(req.body.password);
   if (!validPassword) {
-    res.sendStatus(404);
+    res.sendStatus(400);
     return;
   }
 
@@ -101,7 +101,9 @@ router.post("/login", async (req, res) => {
     req.session.userId = validUser.id;
     req.session.username = validUser.userName;
     req.session.loggedIn = true;
-    res.sendStatus(204);
+    res
+      .status(200)
+      .json({ user: validUser, message: "You are now logged in!" });
   });
 });
 

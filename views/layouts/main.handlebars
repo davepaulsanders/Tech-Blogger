@@ -22,7 +22,7 @@
                     <a href="" class="log-out nav-link fs-5">Log Out</a>
                 </li>
                 {{else}}
-                <a class="nav-link fs-5" href="/login">Log In</a>
+                <a class="nav-link log-in-page fs-5" href="/login">Log In</a>
                 {{/if}}
             </ul>
         </nav>
@@ -30,10 +30,5 @@
     <main class="container justify-content-center">
     {{{ body }}}
     </main>
-    {{#if loggedIn }}
-  <script src="/javascript/logout.js"></script>
-  {{else}}
-    <script src="/javascript/login.js"></script>
-    {{/if}}
 </body>
 </html>
