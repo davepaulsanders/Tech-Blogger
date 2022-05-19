@@ -75,13 +75,15 @@ router.post("/login", async (req, res) => {
     },
   });
   if (validUser === null) {
+    res.sendStatus(404);
+    return;
   }
   const validPassword = await validUser.checkPassword(req.body.password);
-
+  if (validUser === null) {
+    res.sendStatus(404);
+  }
   if (validPassword) {
     res.json(validUser);
-  } else {
-    console.log("nope");
   }
 });
 

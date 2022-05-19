@@ -16,7 +16,7 @@ const handleLogIn = async (event) => {
   if (response.ok) {
     document.location.replace("/dashboard");
   } else {
-    console.log("You don't have an account");
+    console.log("Wrong username/password combination");
   }
 };
 
