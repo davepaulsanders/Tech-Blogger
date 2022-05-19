@@ -68,4 +68,21 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+router.post("/login", async (req, res) => {
+  const validUser = await User.findOne({
+    where: {
+      email: req.body.email,
+    },
+  });
+  if (validUser === null) {
+  }
+  const validPassword = await validUser.checkPassword(req.body.password);
+
+  if (validPassword) {
+    res.json(validUser);
+  } else {
+    console.log("nope");
+  }
+});
+
 module.exports = router;

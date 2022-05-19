@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const { Post, User, Comment } = require("../models");
-const { all } = require("./api");
 
 router.get("/", async (req, res) => {
   const posts = await Post.findAll({
@@ -12,8 +11,13 @@ router.get("/", async (req, res) => {
 
 router.get("/login", (req, res) => {
   if (req.session.loggedIn) {
-    document.location.replace("/dashboard/");
+    res.redirect("/");
+    return;
   }
   res.render("login");
+});
+
+router.get("/dashboard", (req, res) => {
+  res.render("dashboard");
 });
 module.exports = router;
