@@ -6,7 +6,7 @@ router.get("/", async (req, res) => {
     include: [{ model: User, attributes: ["userName"] }],
   });
   const allPosts = posts.map((post) => post.get({ plain: true }));
-  res.render("homePage", { allPosts, loggedIn: req.session.loggedIn });
+  res.render("homepage", { allPosts, loggedIn: req.session.loggedIn });
 });
 
 router.get("/login", (req, res) => {
@@ -18,18 +18,19 @@ router.get("/login", (req, res) => {
 });
 
 router.get("/dashboard", async (req, res) => {
-  const posts = await Post.findAll({
-    where: {
-      userId: req.session.userId,
-    },
-    include: [{ model: User, attributes: ["userName"] }],
-  });
-  const allPosts = posts.map((post) => post.get({ plain: true }));
-
   if (req.session.loggedIn) {
+    const posts = await Post.findAll({
+      where: {
+        userId: req.session.userId,
+      },
+      include: [{ model: User, attributes: ["userName"] }],
+    });
+    const allPosts = posts.map((post) => post.get({ plain: true }));
     res.render("dashboard", { allPosts, loggedIn: req.session.loggedIn });
   } else {
-    res.render("login");
+    const posts = await Post.findAll();
+    const allPosts = posts.map((post) => post.get({ plain: true }));
+    res.render("homepage", { allPosts, loggedIn: req.session.loggedIn });
   }
 });
 module.exports = router;

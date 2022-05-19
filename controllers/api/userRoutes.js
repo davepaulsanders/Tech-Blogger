@@ -73,6 +73,14 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+router.post("/logout", async (req, res) => {
+  if (req.session.loggedIn) {
+    await req.session.destroy(() => {
+      res.sendStatus(204);
+    });
+  }
+});
+
 router.post("/login", async (req, res) => {
   const validUser = await User.findOne({
     where: {
@@ -88,11 +96,12 @@ router.post("/login", async (req, res) => {
     res.sendStatus(404);
     return;
   }
+
   req.session.save(() => {
     req.session.userId = validUser.id;
     req.session.username = validUser.userName;
     req.session.loggedIn = true;
-    res.json(validUser);
+    res.sendStatus(204);
   });
 });
 

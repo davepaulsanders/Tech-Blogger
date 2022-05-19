@@ -1,5 +1,6 @@
 const logIn = document.querySelector(".log-in");
 const signUp = document.querySelector(".sign-up");
+const loggedIn = document.querySelector(".logged-in");
 
 const handleLogIn = async (event) => {
   event.preventDefault();
@@ -15,7 +16,7 @@ const handleLogIn = async (event) => {
   });
 
   if (response.ok) {
-    document.location.replace("/dashboard");
+    document.location.reload().replace("/dashboard");
   } else {
     console.log("Wrong username/password combination");
   }
@@ -37,8 +38,7 @@ const handleSignUp = async (event) => {
     headers: { "Content-Type": "application/json" },
   });
 
-  if (response) {
-    console.log(response);
+  if (response.ok) {
     document.location.replace("/dashboard");
   } else {
     console.log("Sorry, something went wrong");
