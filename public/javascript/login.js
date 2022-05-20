@@ -17,8 +17,8 @@ const handleLogIn = async (event) => {
     headers: { "Content-Type": "application/json" },
   });
 
-  if (response.ok) {
-    document.location.replace("/");
+  if (response.redirected) {
+    document.location.replace(response.url);
   } else {
     console.log("Wrong username/password combination");
   }
@@ -40,8 +40,8 @@ const handleSignUp = async (event) => {
     headers: { "Content-Type": "application/json" },
   });
 
-  if (response.ok) {
-    console.log("Logged in!");
+  if (response.redirected) {
+    document.location.replace(response.url);
   } else {
     console.log("Sorry, something went wrong");
   }

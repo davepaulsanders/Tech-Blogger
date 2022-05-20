@@ -58,7 +58,7 @@ router.post("/", async (req, res) => {
       req.session.userId = validUser.id;
       req.session.username = validUser.userName;
       req.session.loggedIn = true;
-      res.json(validUser);
+      res.redirect("/");
     });
   } catch (err) {
     console.log(err.message);
