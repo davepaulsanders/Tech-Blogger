@@ -27,6 +27,7 @@ router.post("/login", async (req, res) => {
       email: req.body.email,
     },
   });
+
   if (validUser === null) {
     res.sendStatus(400);
     return;
@@ -37,10 +38,12 @@ router.post("/login", async (req, res) => {
     res.sendStatus(400);
     return;
   }
+
   req.session.save(() => {
     req.session.userId = validUser.id;
     req.session.username = validUser.userName;
     req.session.loggedIn = true;
+    console.log(req.session);
     res.redirect("/dashboard");
   });
 });

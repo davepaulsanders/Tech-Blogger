@@ -1,11 +1,12 @@
 const express = require("express");
 // The models need to be imported
 const { User, Post, Comments } = require("./models");
+const helpers = require("./utils/helpers");
 const sequelize = require("./config/connection.js");
 const routes = require("./controllers");
 const path = require("path");
 const exphbs = require("express-handlebars");
-const hbs = exphbs.create({});
+const hbs = exphbs.create({ helpers });
 const session = require("express-session");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 

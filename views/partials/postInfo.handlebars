@@ -1,7 +1,7 @@
 <article class="card my-3">
     <div class="card-header bg-info d-flex justify-content-between align-items-center">
         <h2>{{postTitle}}</h2>
-        <p>Created by {{user.userName}} on {{createdAt}}</p>
+        <p>Created by {{user.userName}} on {{format_date createdAt }}</p>
     </div>
     <div class="card-body">
         <p>{{postText}}</p>

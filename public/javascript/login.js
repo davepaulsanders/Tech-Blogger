@@ -41,6 +41,7 @@ const handleSignUp = async (event) => {
   });
 
   if (response.ok) {
+  
     document.location.replace("/");
   } else {
     console.log("Sorry, something went wrong");
