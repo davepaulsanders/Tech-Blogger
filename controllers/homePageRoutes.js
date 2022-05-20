@@ -18,6 +18,7 @@ router.get("/login", (req, res) => {
 });
 
 router.get("/dashboard", async (req, res) => {
+
   if (req.session.loggedIn) {
     const posts = await Post.findAll({
       where: {

@@ -54,9 +54,10 @@ router.post("/", async (req, res) => {
 
   try {
     const userCreate = await User.create(newUser);
+    console.log(userCreate);
     req.session.save(() => {
-      req.session.userId = validUser.id;
-      req.session.username = validUser.userName;
+      req.session.userId = userCreate.id;
+      req.session.username = userCreate.userName;
       req.session.loggedIn = true;
       res.redirect("/");
     });
@@ -100,7 +101,7 @@ router.delete("/:id", async (req, res) => {
 router.post("/logout", async (req, res) => {
   if (req.session.loggedIn) {
     await req.session.destroy(() => {
-      res.sendStatus(204);
+      res.status(204).end();
     });
   }
 });
