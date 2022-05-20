@@ -32,16 +32,16 @@ router.post("/login", async (req, res) => {
     return;
   }
   const validPassword = await validUser.checkPassword(req.body.password);
+
   if (!validPassword) {
     res.sendStatus(400);
     return;
   }
-
   req.session.save(() => {
     req.session.userId = validUser.id;
     req.session.username = validUser.userName;
     req.session.loggedIn = true;
-    res.redirect("/");
+    res.redirect("/dashboard");
   });
 });
 

@@ -16,7 +16,7 @@ const handlePostSubmit = async (event) => {
   });
 
   if (response.ok) {
-    console.log("worked");
+    document.location.replace("/dashboard");
   }
 };
 

@@ -40,8 +40,8 @@ const handleSignUp = async (event) => {
     headers: { "Content-Type": "application/json" },
   });
 
-  if (response.redirected) {
-    document.location.replace(response.url);
+  if (response.ok) {
+    document.location.replace("/");
   } else {
     console.log("Sorry, something went wrong");
   }
