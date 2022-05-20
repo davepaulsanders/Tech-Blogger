@@ -19,11 +19,13 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
+  console.log(req.body);
   const newPost = {
     postTitle: req.body.title,
     postText: req.body.text,
-    userId: req.body.userId,
+    userId: req.session.userId,
   };
+
   try {
     const postCreate = await Post.create(newPost);
     res.json({ message: "Post created!" });

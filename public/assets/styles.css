@@ -1,3 +1,7 @@
 .card {
     max-width: 25rem;
 }
+
+.create-post {
+    width: 20rem;
+}
