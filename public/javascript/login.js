@@ -4,8 +4,10 @@ const loggedIn = document.querySelector(".logged-in");
 
 const handleLogIn = async (event) => {
   event.preventDefault();
+
   const email = document.querySelector(".login-email").value.trim();
   const password = document.querySelector(".login-password").value.trim();
+
   const response = await fetch("/api/users/login", {
     method: "POST",
     body: JSON.stringify({

@@ -21,6 +21,30 @@ router.get("/:id", async (req, res) => {
   res.json(user);
 });
 
+router.post("/login", async (req, res) => {
+  const validUser = await User.findOne({
+    where: {
+      email: req.body.email,
+    },
+  });
+  if (validUser === null) {
+    res.sendStatus(400);
+    return;
+  }
+  const validPassword = await validUser.checkPassword(req.body.password);
+  if (!validPassword) {
+    res.sendStatus(400);
+    return;
+  }
+
+  req.session.save(() => {
+    req.session.userId = validUser.id;
+    req.session.username = validUser.userName;
+    req.session.loggedIn = true;
+    res.redirect("/");
+  });
+});
+
 router.post("/", async (req, res) => {
   const newUser = {
     userName: req.body.username,
@@ -79,32 +103,6 @@ router.post("/logout", async (req, res) => {
       res.sendStatus(204);
     });
   }
-});
-
-router.post("/login", async (req, res) => {
-  const validUser = await User.findOne({
-    where: {
-      email: req.body.email,
-    },
-  });
-  if (validUser === null) {
-    res.sendStatus(400);
-    return;
-  }
-  const validPassword = await validUser.checkPassword(req.body.password);
-  if (!validPassword) {
-    res.sendStatus(400);
-    return;
-  }
-
-  req.session.save(() => {
-    req.session.userId = validUser.id;
-    req.session.username = validUser.userName;
-    req.session.loggedIn = true;
-    res
-      .status(200)
-      .json({ user: validUser, message: "You are now logged in!" });
-  });
 });
 
 module.exports = router;
