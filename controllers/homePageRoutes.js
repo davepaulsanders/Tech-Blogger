@@ -1,12 +1,25 @@
 const router = require("express").Router();
 const { Post, User, Comment } = require("../models");
 
-router.get("/", async (req, res) => {
-  const posts = await Post.findAll({
+// router.get("/", async (req, res) => {
+//   console.log(req.session)
+//   const posts = await Post.findAll({
+//     include: [{ model: User, attributes: ["userName"] }],
+//   });
+//   const allPosts = posts.map((post) => post.get({ plain: true }));
+//   res.render("homepage", { allPosts, loggedIn: req.session.loggedIn });
+// });
+
+router.get("/", (req, res) => {
+  Post.findAll({
     include: [{ model: User, attributes: ["userName"] }],
-  });
-  const allPosts = posts.map((post) => post.get({ plain: true }));
-  res.render("homepage", { allPosts, loggedIn: req.session.loggedIn });
+  }).then(posts => {
+    console.log("SESSION!!!! ")
+    console.log(req.session)
+    const allPosts = posts.map((post) => post.get({ plain: true }));
+    res.render("homepage", { allPosts, loggedIn: req.session.loggedIn });
+  })
+  
 });
 
 router.get("/login", (req, res) => {
@@ -17,21 +30,4 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
-router.get("/dashboard", async (req, res) => {
-
-  if (req.session.loggedIn) {
-    const posts = await Post.findAll({
-      where: {
-        userId: req.session.userId,
-      },
-      include: [{ model: User, attributes: ["userName"] }],
-    });
-    const allPosts = posts.map((post) => post.get({ plain: true }));
-    res.render("dashboard", { allPosts, loggedIn: req.session.loggedIn });
-  } else {
-    const posts = await Post.findAll();
-    const allPosts = posts.map((post) => post.get({ plain: true }));
-    res.render("homepage", { allPosts, loggedIn: req.session.loggedIn });
-  }
-});
 module.exports = router;

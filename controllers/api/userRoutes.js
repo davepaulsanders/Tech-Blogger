@@ -21,30 +21,28 @@ router.get("/:id", async (req, res) => {
   res.json(user);
 });
 
-router.post("/login", async (req, res) => {
-  const validUser = await User.findOne({
+router.post("/login", (req, res) => {
+  User.findOne({
     where: {
       email: req.body.email,
     },
-  });
+  }).then(async (dbUserData) => {
+    if (!dbUserData) {
+      res.status(400).json({ message: "No user with that email address!" });
+      return;
+    }
 
-  if (validUser === null) {
-    res.sendStatus(400);
-    return;
-  }
-  const validPassword = await validUser.checkPassword(req.body.password);
+    const validPassword = dbUserData.checkPassword(req.body.password);
 
-  if (!validPassword) {
-    res.sendStatus(400);
-    return;
-  }
+    if (!validPassword) {
+      res.status(400).json({ message: "Incorrect password!" });
+      return;
+    }
 
-  req.session.save(() => {
-    req.session.userId = validUser.id;
-    req.session.username = validUser.userName;
+    req.session.user_id = dbUserData.id;
+    req.session.username = dbUserData.username;
     req.session.loggedIn = true;
-    console.log(req.session);
-    res.redirect("/dashboard");
+    res.sendStatus(200);
   });
 });
 
