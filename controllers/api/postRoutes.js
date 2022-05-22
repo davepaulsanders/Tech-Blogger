@@ -29,7 +29,7 @@ router.get("/:id", async (req, res) => {
   });
   post = post.get({ plain: true });
   console.log(post);
-  res.render("individual-post", { post });
+  res.render("individual-post", { post, loggedIn: req.session.loggedIn });
 });
 
 router.post("/", async (req, res) => {
