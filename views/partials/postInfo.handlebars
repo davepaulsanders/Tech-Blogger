@@ -1,13 +1,21 @@
-<article class="card my-3">
-    <div class="card-header bg-info d-flex justify-content-between align-items-center">
+<article class="card my-3 posts shadow-lg border-2 border-primary">
+    <a href="api/posts/{{id}}">
+    <div data-id = {{id}} class="card-header d-flex align-items-center justify-content-between">
         <h2>{{postTitle}}</h2>
-        <p>Created by {{user.userName}} on {{format_date createdAt }}</p>
+        <p class="post-date">Created by {{user.userName}} on {{format_date createdAt }}</p>
     </div>
     <div class="card-body">
         <p>{{postText}}</p>
+
+    {{#if comments}}
+    <div class="comment-box">
      {{#each comments as |comment|}}
-     <p>{{comment.commentText}}</p>
-     <p>{{comment.user.userName}}</p>
+     <p class="comment-user">{{comment.user.userName}}</p>
+     <p class="comment-text">{{comment.commentText}}</p>
      {{/each}}
     </div>
+    {{/if}}
+    </div>
+    </a>
 </article>
+<script src="javascript/individual-post.js"></script>

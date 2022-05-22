@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Post, Comment } = require("../../models");
+const { Post, User, Comment } = require("../../models");
 
 router.get("/", async (req, res) => {
   const posts = await Post.findAll({
@@ -9,13 +9,27 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  const post = await Post.findOne({
+  let post = await Post.findOne({
     where: {
       id: req.params.id,
     },
-    include: [Comment],
+    include: [
+      {
+        model: User,
+        attributes: ["userName"],
+      },
+      {
+        model: Comment,
+        include: {
+          model: User,
+          attributes: ["userName"],
+        },
+      },
+    ],
   });
-  res.json(post);
+  post = post.get({ plain: true });
+  console.log(post);
+  res.render("individual-post", { post });
 });
 
 router.post("/", async (req, res) => {

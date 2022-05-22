@@ -1,7 +1,41 @@
-.card {
-    max-width: 25rem;
+a {
+    text-decoration: none;
+    color: black;
 }
 
+.posts {
+    width: 40rem;
+}
+
+.card-header {
+    border-bottom: 2px solid rgb(14,110,253);
+   
+    
+}
+.comment-user {
+    font-size: .75rem;
+    font-weight: bold;
+    margin-top: .05rem;
+    margin-bottom: 0.05rem;
+}
+.comment-text {
+    font-size: .75rem;
+    margin-bottom: 0.5rem;
+}
+.comment-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: .5rem;
+    max-height: 8rem;
+    overflow: auto;
+}
+.post-date {
+    font-size: .75rem;
+}
 .create-post {
-    width: 20rem;
+   width: 100%;
+   max-width: 40rem;
 }

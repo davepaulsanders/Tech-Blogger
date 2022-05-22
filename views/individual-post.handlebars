@@ -1,0 +1,20 @@
+<div class="d-flex justify-content-center">
+<article class="card my-3 posts shadow-lg border-2 border-primary">
+    <div class="card-header d-flex align-items-center justify-content-between">
+        <h2>{{post.postTitle}}</h2>
+        <p class="post-date">Created by {{post.user.userName}} on {{format_date post.createdAt }}</p>
+    </div>
+    <div class="card-body">
+        <p>{{post.postText}}</p>
+
+    {{#if post.comments}}
+    <div class="comment-box">
+     {{#each post.comments as |comment|}}
+     <p class="comment-user">{{comment.user.userName}}</p>
+     <p class="comment-text">{{comment.commentText}}</p>
+     {{/each}}
+    </div>
+    {{/if}}
+    </div>
+</article>
+</div>
