@@ -19,11 +19,10 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  console.log(req.body);
   const newPost = {
     postTitle: req.body.title,
     postText: req.body.text,
-    userId: req.session.userId,
+    userId: req.session.user_id,
   };
 
   try {

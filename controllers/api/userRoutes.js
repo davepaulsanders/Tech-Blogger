@@ -26,7 +26,7 @@ router.post("/login", (req, res) => {
     where: {
       email: req.body.email,
     },
-  }).then(async (dbUserData) => {
+  }).then((dbUserData) => {
     if (!dbUserData) {
       res.status(400).json({ message: "No user with that email address!" });
       return;
@@ -38,11 +38,12 @@ router.post("/login", (req, res) => {
       res.status(400).json({ message: "Incorrect password!" });
       return;
     }
-
-    req.session.user_id = dbUserData.id;
-    req.session.username = dbUserData.username;
-    req.session.loggedIn = true;
-    res.sendStatus(200);
+    req.session.save(() => {
+      req.session.user_id = dbUserData.id;
+      req.session.username = dbUserData.userName;
+      req.session.loggedIn = true;
+      res.redirect("/");
+    });
   });
 });
 
@@ -52,19 +53,14 @@ router.post("/", async (req, res) => {
     email: req.body.email,
     password: req.body.password,
   };
-
-  try {
-    const userCreate = await User.create(newUser);
-    console.log(userCreate);
+  User.create(newUser).then((data) => {
     req.session.save(() => {
-      req.session.userId = userCreate.id;
-      req.session.username = userCreate.userName;
+      req.session.userId = data.id;
+      req.session.username = data.userName;
       req.session.loggedIn = true;
       res.redirect("/");
     });
-  } catch (err) {
-    console.log(err.message);
-  }
+  });
 });
 
 router.put("/:id", async (req, res) => {
