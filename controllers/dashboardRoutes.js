@@ -14,12 +14,19 @@ router.get("/", withAuth, (req, res) => {
         model: User,
         attributes: ["userName"],
       },
+      {
+        model: Comment,
+        include: {
+          model: User,
+          attributes: ["userName"],
+        },
+      },
     ],
   })
     .then((dbPostData) => {
       // serialize data before passing to template
       const posts = dbPostData.map((post) => post.get({ plain: true }));
-      console.log(posts);
+      console.log(posts[0].comments[0]);
       res.render("dashboard", { posts, loggedIn: req.session.loggedIn });
     })
     .catch((err) => {

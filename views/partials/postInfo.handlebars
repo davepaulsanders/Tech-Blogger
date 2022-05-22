@@ -5,5 +5,9 @@
     </div>
     <div class="card-body">
         <p>{{postText}}</p>
+     {{#each comments as |comment|}}
+     <p>{{comment.commentText}}</p>
+     <p>{{comment.user.userName}}</p>
+     {{/each}}
     </div>
 </article>
