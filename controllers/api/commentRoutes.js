@@ -21,9 +21,11 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   const newComment = {
     commentText: req.body.text,
-    userId: req.body.user,
+    userId: req.session.user_id,
     postId: req.body.post,
   };
+
+  console.log(newComment);
   try {
     const commentCreate = await Comment.create(newComment);
     res.json({ message: "Comment created!" });
