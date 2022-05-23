@@ -1,7 +1,7 @@
 
-<form class="d-flex justify-content-center mb-4">
-    <div class="card create-post mt-3 p-2 border-2 border-primary shadow-lg">
-        <h2 class="mb-4">Create Post</h2>
+<form class="d-flex justify-content-center">
+    <div class="card create-post mt-3 w-75 p-2 border-2 border-primary shadow-lg">
+        <p class="fs-4">Create Post</p>
         <div class="form-group mb-2">
             <label for="post-title">Post Title</label>
             <input class="form-control post-title" type="text" name="post-title" id="post-title">
@@ -13,9 +13,9 @@
         <button class="post-submit btn btn-primary">Post</button>
     </div>
 </form>
-<ul class="d-flex justify-content-center p-0 row">
+<ul class="d-flex justify-content-center m-0 p-0 w-100">
     {{#each posts as |post| }}
-    <li class="list-unstyled w-100 d-flex justify-content-center">
+    <li class="list-unstyled d-flex justify-content-center w-75">
         {{> postInfo loggedIn="loggedIn"}}
     </li>
     {{/each}}
