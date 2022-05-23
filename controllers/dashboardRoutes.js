@@ -57,7 +57,6 @@ router.get("/edit/:id", withAuth, (req, res) => {
   })
     .then((dbPostData) => {
       const post = dbPostData.get({ plain: true });
-      console.log(post);
       res.render("edit-post", {
         post,
         loggedIn: req.session.loggedIn,
@@ -69,4 +68,34 @@ router.get("/edit/:id", withAuth, (req, res) => {
     });
 });
 
+router.get("/edit/comment/:id", withAuth, (req, res) => {
+  Comment.findOne({
+    where: {
+      // use the ID from the session
+      id: req.params.id,
+    },
+    include: [
+      {
+        model: User,
+        attributes: ["userName", "id"],
+      },
+    ],
+  })
+    .then((dbCommentData) => {
+      const comment = dbCommentData.get({ plain: true });
+
+      if (req.session.user_id === comment.user.id) {
+        res.render("edit-comment", {
+          comment,
+          loggedIn: req.session.loggedIn,
+        });
+      } else {
+        
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 module.exports = router;

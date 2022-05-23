@@ -30,6 +30,13 @@ a {
     overflow: auto;
     padding: 0.5rem;
 }
+.comment-edit-box {
+    border: 2px solid rgb(14,110,253);
+    border-radius: 3px;
+    max-height: 10rem;
+    overflow: auto;
+    padding: 0.5rem;
+}
 .delete-comment:hover {
     color: red;
     cursor: pointer;
