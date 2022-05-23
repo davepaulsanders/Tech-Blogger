@@ -1,5 +1,5 @@
 <div class="comment-edit-box mt-4">
-     <div data-id="{{comment.id}}"class="d-flex justify-content-between align-items-center mt-2">
+     <div data-id="{{comment.id}}"class=" comment-id d-flex justify-content-between align-items-center mt-2">
         <div class="d-flex flex-column align-items-start flex-grow-1">
             <div class="d-flex align-items-center justify-content-between">
             <i class="bi bi-person-circle p-1"></i>
@@ -8,8 +8,8 @@
             <input type="text" placeholder="{{comment.commentText}}"class="comment-text w-100 p-2"></input>
         </div>
      </div>
-     <button class="btn btn-primary btn-sm">Save comment</button>
+     <button class="btn btn-primary btn-sm save-comment">Save comment</button>
     <button class="btn btn-danger btn-sm"><i class="delete-comment bi bi-trash-fill p-4"></i></button>
     </div>
 
-    <script src="javascript/edit-comment.js"></script>
+    <script src="/javascript/update-comment.js"></script>

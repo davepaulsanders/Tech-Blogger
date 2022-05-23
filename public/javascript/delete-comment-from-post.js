@@ -1,7 +1,6 @@
-const handleDeleteComment = async (event) => {
-  event.preventDefault();
+const handleDeleteCommentInEdit = async (event) => {
   const id = event.target.closest("[data-id]").getAttribute("data-id");
-  console.log(id);
+  event.preventDefault();
   const response = await fetch(`/api/comments/${id}`, {
     method: "delete",
     headers: { "Content-Type": "application/json" },
@@ -15,8 +14,6 @@ const handleDeleteComment = async (event) => {
   }
 };
 
-const deleteButton = document
-  .querySelectorAll(".delete-comment")
-  .forEach((btn) => {
-    btn.addEventListener("click", handleDeleteComment);
-  });
+document.querySelectorAll(".delete-comment").forEach((btn) => {
+  btn.addEventListener("click", handleDeleteCommentInEdit);
+});

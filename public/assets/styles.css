@@ -43,6 +43,11 @@ a {
 }
 .individual-comment {
     border-bottom: 1px solid black;
+    
+}
+.individual-comment:hover {
+    cursor: pointer;
+    
 }
 .add-comment {
     padding-left: .5rem;

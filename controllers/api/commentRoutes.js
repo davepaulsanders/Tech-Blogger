@@ -37,7 +37,7 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   const updatedComment = {
-    commentText: req.body.text,
+    commentText: req.body.commentText,
   };
   try {
     const commentUpdate = await Comment.update(updatedComment, {
@@ -53,7 +53,6 @@ router.put("/:id", async (req, res) => {
 });
 
 router.delete("/:id", async (req, res) => {
-  console.log('getting hereaksehgksuehglaksueghaksueghlaskuehg')
   try {
     Comment.destroy({
       where: {
