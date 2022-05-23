@@ -35,4 +35,35 @@ router.get("/", withAuth, (req, res) => {
     });
 });
 
+router.get("/edit/:id", withAuth, (req, res) => {
+  Post.findOne({
+    where: {
+      // use the ID from the session
+      id: req.params.id,
+    },
+    include: [
+      {
+        model: User,
+        attributes: ["userName"],
+      },
+      {
+        model: Comment,
+        include: {
+          model: User,
+          attributes: ["userName"],
+        },
+      },
+    ],
+  })
+    .then((dbPostData) => {
+      const post = dbPostData.get({ plain: true });
+      console.log(post);
+      res.render("edit-post", { post, loggedIn: req.session.loggedIn });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
 module.exports = router;

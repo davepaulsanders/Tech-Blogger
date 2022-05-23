@@ -66,7 +66,25 @@ router.put("/:id", async (req, res) => {
     res.end();
   }
 });
+router.put("/:id", async (req, res) => {
+  try {
+  const update = await Post.update(
+    {
+      text: req.params.text,
+    },
+    {
+      where: {
+        id: req.params.id,
+      },
+    }
+  );
+  res.sendStatus(204)
+  } catch(err) {
+    console.log(err)
+  }
 
+
+});
 router.delete("/:id", async (req, res) => {
   try {
     Post.destroy({
@@ -74,7 +92,7 @@ router.delete("/:id", async (req, res) => {
         id: req.params.id,
       },
     });
-    res.json({ message: "Post deleted!" });
+    res.render("dashboard", { loggedIn: req.session.loggedIn });
   } catch (err) {
     console.log(err.message);
   }

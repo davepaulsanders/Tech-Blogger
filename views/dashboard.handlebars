@@ -13,14 +13,13 @@
         <button class="post-submit btn btn-primary">Post</button>
     </div>
 </form>
-
-
 <ul class="d-flex justify-content-center p-0 row">
     {{#each posts as |post| }}
     <li class="list-unstyled w-100 d-flex justify-content-center">
-        {{> postInfo }}
+        {{> postInfo loggedIn="loggedIn"}}
     </li>
     {{/each}}
 </ul>
 <script src="/javascript/logout.js"></script>
 <script src="/javascript/create-post.js"></script>
+<script src="/javascript/edit-post.js"></script>
