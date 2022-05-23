@@ -18,13 +18,21 @@
     {{#if post.comments}}
     <div class="comment-box">
      {{#each post.comments as |comment|}}
-     <i class="bi bi-person-circle pb-1 d-inline"></i>
-     <p class="comment-user d-inline">{{comment.user.userName}}</p>
-     <p class="comment-text">{{comment.commentText}}</p>
+     <div data-id="{{comment.id}}"class="individual-comment d-flex justify-content-between align-items-center mt-2">
+        <div>
+            <i class="bi bi-person-circle d-inline"></i>
+            <p class="comment-user d-inline">{{comment.user.userName}}</p>
+            <p class="comment-text">{{comment.commentText}}</p>
+        </div>
+        <div>
+            <i class="delete-comment bi bi-trash-fill p-4"></i>
+        </div>
+     </div>
      {{/each}}
     </div>
     {{/if}}
     </div>
 </article>
 <script src="/javascript/delete-post.js"></script>
+<script src="/javascript/delete-comment.js"></script>
 <script src="/javascript/update-post.js"></script>

@@ -53,6 +53,7 @@ router.put("/:id", async (req, res) => {
 });
 
 router.delete("/:id", async (req, res) => {
+  console.log('getting hereaksehgksuehglaksueghaksueghlaskuehg')
   try {
     Comment.destroy({
       where: {

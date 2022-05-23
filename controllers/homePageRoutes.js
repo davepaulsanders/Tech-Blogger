@@ -12,6 +12,30 @@ router.get("/", (req, res) => {
   });
 });
 
+router.get("/post/:id", async (req, res) => {
+  let post = await Post.findOne({
+    where: {
+      id: req.params.id,
+    },
+    include: [
+      {
+        model: User,
+        attributes: ["userName"],
+      },
+      {
+        model: Comment,
+        include: {
+          model: User,
+          attributes: ["userName"],
+        },
+      },
+    ],
+  });
+  post = post.get({ plain: true });
+  console.log(post);
+  res.render("individual-post", { post, loggedIn: req.session.loggedIn });
+});
+
 router.get("/login", (req, res) => {
   if (req.session.loggedIn) {
     res.redirect("/");
