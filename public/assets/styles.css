@@ -1,6 +1,8 @@
 
 /* GENERAL TAGS */
-
+body {
+    background-color: #9caec9;
+}
 a {
     text-decoration: none!important;
     color: black!important;
@@ -13,8 +15,8 @@ a {
 }
 .card-header {
     border-bottom: 2px solid rgb(14,110,253);
-    
 }
+
 .post-date {
     font-size: .75rem;
 }
