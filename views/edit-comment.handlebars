@@ -1,3 +1,4 @@
+{{#if created}}
 <div class="comment-edit-box mt-4">
      <div data-id="{{comment.id}}"class=" comment-id d-flex justify-content-between align-items-center mt-2">
         <div class="d-flex flex-column align-items-start flex-grow-1">
@@ -11,5 +12,23 @@
      <button class="btn btn-primary btn-sm save-comment">Save comment</button>
     <button class="btn btn-danger btn-sm"><i class="delete-comment bi bi-trash-fill p-4"></i></button>
     </div>
-
     <script src="/javascript/update-comment.js"></script>
+    <script src="/javascript/delete-comment-in-edit.js"></script>
+    {{else}}
+    <div class="comment-edit-box mt-4">
+        <div data-id="{{comment.id}}"class=" comment-id d-flex justify-content-between align-items-center mt-2">
+            <div class="d-flex flex-column align-items-start flex-grow-1">
+                <p class="text-danger">You can't edit this comment, you didn't create it!</p>
+                <div class="comment-box w-100">
+                    <i class="bi bi-person-circle pb-1 d-inline"></i>
+                    <p class="comment-user d-inline-block">{{comment.user.userName}}</p>
+                    <span class="comment-date">{{format_date comment.createdAt}}</span>
+                    <p class="comment-text">{{comment.commentText}}</p>
+                </div>
+            </div>
+        </div>
+    <button class="btn btn-danger btn-sm mt-1"><i class="delete-comment bi bi-trash-fill p-4"></i></button>
+    </div>
+    <script src="/javascript/comments/delete-comment-in-edit.js"></script>
+    {{/if}}
+    

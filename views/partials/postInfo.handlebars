@@ -15,12 +15,12 @@
     </a>
     <div class="card-body">
         <p>{{postText}}</p>
-
     {{#if comments}}
     <div class="comment-box">
      {{#each comments as |comment|}}
      <i class="bi bi-person-circle pb-1 d-inline"></i>
-     <p class="comment-user d-inline">{{comment.user.userName}}</p>
+     <p class="comment-user d-inline-block">{{comment.user.userName}}</p>
+     <span class="comment-date">{{format_date comment.createdAt}}</span>
      <p class="comment-text">{{comment.commentText}}</p>
      {{/each}}
     </div>

@@ -10,7 +10,8 @@
     {{#if post.comments}}
     <div class="comment-box">
      {{#each post.comments as |comment|}}
-     <p class="comment-user">{{comment.user.userName}}</p>
+     <p class="comment-user d-inline-block">{{comment.user.userName}}</p>
+     <span class="comment-date">{{format_date comment.createdAt}}</span>
      <p class="comment-text">{{comment.commentText}}</p>
      {{/each}}
     </div>
@@ -25,4 +26,4 @@
    
 </article>
 </div>
-<script src="/javascript/add-comment.js"></script>
+<script src="/javascript/comments/add-comment.js"></script>

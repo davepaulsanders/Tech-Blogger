@@ -7,7 +7,7 @@ router.get("/", withAuth, (req, res) => {
   Post.findAll({
     where: {
       // use the ID from the session
-      userId: req.session.user_id,
+      userId: req.session.userId,
     },
     include: [
       {
@@ -27,7 +27,11 @@ router.get("/", withAuth, (req, res) => {
       // serialize data before passing to template
       const posts = dbPostData.map((post) => post.get({ plain: true }));
       console.log(posts);
-      res.render("dashboard", { posts, loggedIn: req.session.loggedIn });
+      res.render("dashboard", {
+        posts,
+        username: req.session.username,
+        loggedIn: req.session.loggedIn,
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -59,6 +63,7 @@ router.get("/edit/:id", withAuth, (req, res) => {
       const post = dbPostData.get({ plain: true });
       res.render("edit-post", {
         post,
+        username: req.session.username,
         loggedIn: req.session.loggedIn,
       });
     })
@@ -83,15 +88,12 @@ router.get("/edit/comment/:id", withAuth, (req, res) => {
   })
     .then((dbCommentData) => {
       const comment = dbCommentData.get({ plain: true });
-
-      if (req.session.user_id === comment.user.id) {
-        res.render("edit-comment", {
-          comment,
-          loggedIn: req.session.loggedIn,
-        });
-      } else {
-        
-      }
+      res.render("edit-comment", {
+        comment,
+        username: req.session.username,
+        loggedIn: req.session.loggedIn,
+        created: comment.id === req.session.id ? true : false,
+      });
     })
     .catch((err) => {
       console.log(err);

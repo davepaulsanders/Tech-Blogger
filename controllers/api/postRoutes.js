@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { Post, User, Comment } = require("../../models");
+const withAuth = require("../../utils/withAuth");
 
 router.get("/", async (req, res) => {
   const posts = await Post.findAll({
@@ -32,11 +33,11 @@ router.get("/:id", async (req, res) => {
   res.render("individual-post", { post, loggedIn: req.session.loggedIn });
 });
 
-router.post("/", async (req, res) => {
+router.post("/", withAuth, async (req, res) => {
   const newPost = {
     postTitle: req.body.title,
     postText: req.body.text,
-    userId: req.session.user_id,
+    userId: req.session.userId,
   };
 
   try {
@@ -48,11 +49,11 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", withAuth, async (req, res) => {
   const updatedPost = {
     postTitle: req.body.title,
     postText: req.body.text,
-    userId: req.body.userId,
+    userId: req.session.userId,
   };
   try {
     const postUpdate = await Post.update(updatedPost, {
@@ -66,28 +67,10 @@ router.put("/:id", async (req, res) => {
     res.end();
   }
 });
-router.put("/:id", async (req, res) => {
-  try {
-  const update = await Post.update(
-    {
-      text: req.params.text,
-    },
-    {
-      where: {
-        id: req.params.id,
-      },
-    }
-  );
-  res.sendStatus(204)
-  } catch(err) {
-    console.log(err)
-  }
 
-
-});
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", withAuth, async (req, res) => {
   try {
-    Post.destroy({
+    await Post.destroy({
       where: {
         id: req.params.id,
       },

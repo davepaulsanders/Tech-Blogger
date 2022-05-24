@@ -13,7 +13,12 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light px-3 justify-content-between">
-            <a class="x-large navbar-brand fs-1" href="/">Tech Blog</a>
+            <div>
+                <a class="x-large navbar-brand fs-1" href="/">Tech Blog</a>
+                {{#if loggedIn}}
+                <p class="m-2 text-primary">Welcome {{username}}!</p>
+                {{/if}}
+            </div>
             <ul class="nav">
                 <li class="nav-item">
                     <a class="dashboard nav-link fs-5" href="/dashboard">Dashboard</a>

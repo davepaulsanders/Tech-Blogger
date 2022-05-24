@@ -1,5 +1,7 @@
 const logInButton = document.querySelector(".log-in-submit");
 const signUpButton = document.querySelector(".sign-up-submit");
+const badLogIn = document.querySelector(".bad-log-in");
+const badSignUp = document.querySelector(".bad-sign-up");
 
 async function loginFormHandler(event) {
   event.preventDefault();
@@ -19,8 +21,10 @@ async function loginFormHandler(event) {
     if (response.ok) {
       document.location.replace("/");
     } else {
-      alert(response.statusText);
+      badLogIn.textContent = "Incorrect email/password combination";
     }
+  } else {
+    badLogIn.textContent = "Please fill out all fields"
   }
 }
 
@@ -29,9 +33,12 @@ async function signUpFormHandler(event) {
   const username = document.querySelector(".signup-username").value.trim();
   const email = document.querySelector(".signup-email").value.trim();
   const password = document.querySelector(".signup-password").value.trim();
-  console.log(email, password);
+
+  if (!username || !email || !password) {
+    badSignUp.textContent = "Please fill out all fields";
+  }
   if (email && password) {
-    const response = await fetch("/api/users/", {
+    const response = await fetch("/api/users", {
       method: "post",
       body: JSON.stringify({
         username,
@@ -43,7 +50,7 @@ async function signUpFormHandler(event) {
     if (response.ok) {
       document.location.replace("/");
     } else {
-      alert(response.statusText);
+      badSignUp.textContent = "Something went wrong";
     }
   }
 }

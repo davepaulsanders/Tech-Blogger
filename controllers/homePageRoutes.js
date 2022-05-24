@@ -8,7 +8,11 @@ router.get("/", (req, res) => {
     console.log("SESSION!!!! ");
     console.log(req.session);
     const allPosts = posts.map((post) => post.get({ plain: true }));
-    res.render("homepage", { allPosts, loggedIn: req.session.loggedIn });
+    res.render("homepage", {
+      allPosts,
+      username: req.session.username,
+      loggedIn: req.session.loggedIn,
+    });
   });
 });
 
@@ -33,7 +37,7 @@ router.get("/post/:id", async (req, res) => {
   });
   post = post.get({ plain: true });
   console.log(post);
-  res.render("individual-post", { post, loggedIn: req.session.loggedIn });
+  res.render("individual-post", { post, username: req.session.username, loggedIn: req.session.loggedIn });
 });
 
 router.get("/login", (req, res) => {

@@ -39,7 +39,7 @@ router.post("/login", (req, res) => {
       return;
     }
     req.session.save(() => {
-      req.session.user_id = dbUserData.id;
+      req.session.userId = dbUserData.id;
       req.session.username = dbUserData.userName;
       req.session.loggedIn = true;
       res.redirect("/");
@@ -58,6 +58,7 @@ router.post("/", async (req, res) => {
       req.session.userId = data.id;
       req.session.username = data.userName;
       req.session.loggedIn = true;
+      console.log(req.session);
       res.redirect("/");
     });
   });

@@ -13,7 +13,7 @@ const handleUpdatePost = async (event) => {
     headers: { "Content-Type": "application/json" },
   });
   if (response.ok) {
-    document.location.replace(`/api/posts/${id}`)
+    document.location.replace('/dashboard')
   }
 };
 
