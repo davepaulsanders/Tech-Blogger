@@ -32,7 +32,7 @@ router.get("/:id", async (req, res) => {
     ],
   });
   post = post.get({ plain: true });
-  console.log(post);
+
   res.render("individual-post", { post, loggedIn: req.session.loggedIn });
 });
 
@@ -45,7 +45,7 @@ router.post("/", withAuth, async (req, res) => {
   };
 
   try {
-    const postCreate = await Post.create(newPost);
+    await Post.create(newPost);
     res.json({ message: "Post created!" });
   } catch (err) {
     console.log(err.message);
@@ -61,7 +61,7 @@ router.put("/:id", withAuth, async (req, res) => {
     userId: req.session.userId,
   };
   try {
-    const postUpdate = await Post.update(updatedPost, {
+    await Post.update(updatedPost, {
       where: {
         id: req.params.id,
       },

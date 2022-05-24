@@ -78,7 +78,7 @@ router.put("/:id", async (req, res) => {
     password: req.body.password,
   };
   try {
-    const userUpdate = await User.update(newUser, {
+    await User.update(newUser, {
       where: {
         id: req.params.id,
       },
@@ -93,7 +93,7 @@ router.put("/:id", async (req, res) => {
 // DELETE a user
 router.delete("/:id", async (req, res) => {
   try {
-    User.destroy({
+    await User.destroy({
       where: {
         id: req.params.id,
       },

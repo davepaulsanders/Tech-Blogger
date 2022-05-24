@@ -96,7 +96,7 @@ router.get("/edit/comment/:id", withAuth, (req, res) => {
         loggedIn: req.session.loggedIn,
         // this variable determines whether a user created the comment
         // they are editing, and stops them from updating if false
-        created: comment.id === req.session.id ? true : false,
+        created: comment.userId === req.session.userId ? true : false,
       });
     })
     .catch((err) => {

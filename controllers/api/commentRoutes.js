@@ -30,7 +30,7 @@ router.post("/", withAuth, async (req, res) => {
   };
 
   try {
-    const commentCreate = await Comment.create(newComment);
+    await Comment.create(newComment);
     res.json({ message: "Comment created!" });
   } catch (err) {
     console.log(err.message);
@@ -44,7 +44,7 @@ router.put("/:id", withAuth, async (req, res) => {
     commentText: req.body.commentText,
   };
   try {
-    const commentUpdate = await Comment.update(updatedComment, {
+    await Comment.update(updatedComment, {
       where: {
         id: req.params.id,
       },
@@ -59,7 +59,7 @@ router.put("/:id", withAuth, async (req, res) => {
 // DELETE a comment
 router.delete("/:id", withAuth, async (req, res) => {
   try {
-    Comment.destroy({
+    await Comment.destroy({
       where: {
         id: req.params.id,
       },
