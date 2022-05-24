@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { Post, User, Comment } = require("../models");
 
+// GET route for homepage
 router.get("/", (req, res) => {
   Post.findAll({
     include: [{ model: User, attributes: ["userName"] }],
@@ -16,6 +17,7 @@ router.get("/", (req, res) => {
   });
 });
 
+// GET route for specific post
 router.get("/post/:id", async (req, res) => {
   let post = await Post.findOne({
     where: {
@@ -40,6 +42,7 @@ router.get("/post/:id", async (req, res) => {
   res.render("individual-post", { post, username: req.session.username, loggedIn: req.session.loggedIn });
 });
 
+// GET route for login and sign up page
 router.get("/login", (req, res) => {
   if (req.session.loggedIn) {
     res.redirect("/");

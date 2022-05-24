@@ -1,5 +1,6 @@
 const logOut = document.querySelector(".log-out");
 
+// log out
 const handleLogOut = async (event) => {
   event.preventDefault();
   const response = await fetch("/api/users/logout", {

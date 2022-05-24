@@ -1,9 +1,11 @@
 const submitComment = document.querySelector(".comment-submit");
 const text = document.querySelector(".comment-text");
 
+// Request to add a comment
 const handleCommentSubmit = async (event) => {
   event.preventDefault();
   const text = document.querySelector(".add-comment").value.trim();
+  // getting post id from the window url
   const postId =
     window.location.href.split("/")[window.location.href.split("/").length - 1];
 

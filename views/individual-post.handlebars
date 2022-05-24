@@ -1,29 +1,27 @@
 <div class="d-flex justify-content-center">
-<article class="card my-3 posts shadow-lg border-2 border-primary">
-    <div class="card-header d-flex align-items-center justify-content-between">
-        <p class="fs-4">{{post.postTitle}}</p>
-        <p class="post-date">Created by {{post.user.userName}} on {{format_date post.createdAt }}</p>
-    </div>
-    <div class="card-body">
-        <p>{{post.postText}}</p>
-
-    {{#if post.comments}}
-    <div class="comment-box">
-     {{#each post.comments as |comment|}}
-     <p class="comment-user d-inline-block">{{comment.user.userName}}</p>
-     <span class="comment-date">{{format_date comment.createdAt}}</span>
-     <p class="comment-text">{{comment.commentText}}</p>
-     {{/each}}
-    </div>
-    {{/if}}
-      {{#if loggedIn}}
-      <form action="">
-        <input type="text" class="add-comment mt-2 mb-2 w-100">
-        <button class="btn btn-primary comment-submit w-100">Add comment</button>
-        </form>
-        {{/if}}
-    </div>
-   
-</article>
+    <article class="card my-3 posts shadow-lg border-2 border-primary">
+        <div class="card-header d-flex align-items-center justify-content-between">
+            <p class="fs-4">{{post.postTitle}}</p>
+            <p class="post-date">Created by {{post.user.userName}} on {{format_date post.createdAt }}</p>
+        </div>
+        <div class="card-body">
+            <p>{{post.postText}}</p>
+            {{#if post.comments}}
+            <div class="comment-box">
+                {{#each post.comments as |comment|}}
+                <p class="comment-user d-inline-block">{{comment.user.userName}}</p>
+                <span class="comment-date">{{format_date comment.createdAt}}</span>
+                <p class="comment-text">{{comment.commentText}}</p>
+                {{/each}}
+            </div>
+            {{/if}}
+            {{#if loggedIn}}
+            <form action="">
+                <input type="text" class="add-comment mt-2 mb-2 w-100">
+                <button class="btn btn-primary comment-submit w-100">Add comment</button>
+            </form>
+            {{/if}}
+        </div>
+    </article>
 </div>
 <script src="/javascript/comments/add-comment.js"></script>

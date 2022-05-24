@@ -1,8 +1,11 @@
-const id = document.querySelector(".comment-id").getAttribute("data-id");
 
+// Update comment text
 const handleUpdateComment = async (event) => {
   event.preventDefault();
+  // get comment id from data attribute
+  const id = document.querySelector(".comment-id").getAttribute("data-id");
   const commentText = document.querySelector(".comment-text").value.trim();
+  
   const response = await fetch(`/api/comments/${id}`, {
     method: "put",
     body: JSON.stringify({

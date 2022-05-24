@@ -2,28 +2,28 @@
     <a href="/post/{{id}}">
     <div data-id = {{id}} class="card-header d-flex justify-content-between">
         <p class="fs-4">{{postTitle}}</p>
-        <div class="">
-        <i class="bi bi-person-circle pb-1 d-inline"></i>
-        <p class="d-inline post-date"> {{user.userName}} on {{format_date createdAt }}</p>
-        {{#if loggedIn}}
-        <div class="d-flex justify-content-end">
-        <button class="btn btn-primary btn-sm m-1 edit">Edit post</button>
-        </div>
-        {{/if}}
+        <div>
+            <i class="bi bi-person-circle pb-1 d-inline"></i>
+            <p class="d-inline post-date"> {{user.userName}} on {{format_date createdAt }}</p>
+            {{#if loggedIn}}
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-primary btn-sm m-1 edit">Edit post</button>
+            </div>
+            {{/if}}
         </div>
     </div>
     </a>
     <div class="card-body">
         <p>{{postText}}</p>
-    {{#if comments}}
-    <div class="comment-box">
-     {{#each comments as |comment|}}
-     <i class="bi bi-person-circle pb-1 d-inline"></i>
-     <p class="comment-user d-inline-block">{{comment.user.userName}}</p>
-     <span class="comment-date">{{format_date comment.createdAt}}</span>
-     <p class="comment-text">{{comment.commentText}}</p>
-     {{/each}}
-    </div>
-    {{/if}}
+        {{#if comments}}
+        <div class="comment-box">
+            {{#each comments as |comment|}}
+            <i class="bi bi-person-circle pb-1 d-inline"></i>
+            <p class="comment-user d-inline-block">{{comment.user.userName}}</p>
+            <span class="comment-date">{{format_date comment.createdAt}}</span>
+            <p class="comment-text">{{comment.commentText}}</p>
+            {{/each}}
+        </div>
+        {{/if}}
     </div>
 </article>

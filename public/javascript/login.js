@@ -1,8 +1,11 @@
 const logInButton = document.querySelector(".log-in-submit");
 const signUpButton = document.querySelector(".sign-up-submit");
+
+// variables for validation messages
 const badLogIn = document.querySelector(".bad-log-in");
 const badSignUp = document.querySelector(".bad-sign-up");
 
+// log in
 async function loginFormHandler(event) {
   event.preventDefault();
 
@@ -28,6 +31,7 @@ async function loginFormHandler(event) {
   }
 }
 
+// sign up
 async function signUpFormHandler(event) {
   event.preventDefault();
   const username = document.querySelector(".signup-username").value.trim();

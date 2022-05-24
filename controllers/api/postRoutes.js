@@ -2,6 +2,8 @@ const router = require("express").Router();
 const { Post, User, Comment } = require("../../models");
 const withAuth = require("../../utils/withAuth");
 
+
+// GET all posts
 router.get("/", async (req, res) => {
   const posts = await Post.findAll({
     include: [Comment],
@@ -9,6 +11,7 @@ router.get("/", async (req, res) => {
   res.json(posts);
 });
 
+// GET a single post
 router.get("/:id", async (req, res) => {
   let post = await Post.findOne({
     where: {
@@ -33,6 +36,7 @@ router.get("/:id", async (req, res) => {
   res.render("individual-post", { post, loggedIn: req.session.loggedIn });
 });
 
+// POST a post
 router.post("/", withAuth, async (req, res) => {
   const newPost = {
     postTitle: req.body.title,
@@ -49,6 +53,7 @@ router.post("/", withAuth, async (req, res) => {
   }
 });
 
+// PUT a post
 router.put("/:id", withAuth, async (req, res) => {
   const updatedPost = {
     postTitle: req.body.title,
@@ -68,6 +73,7 @@ router.put("/:id", withAuth, async (req, res) => {
   }
 });
 
+// DELETE a post
 router.delete("/:id", withAuth, async (req, res) => {
   try {
     await Post.destroy({

@@ -1,7 +1,7 @@
 const router = require("express").Router();
-
 const { User, Post } = require("../../models");
 
+// GET all users
 router.get("/", async (req, res) => {
   const users = await User.findAll({
     include: [Post],
@@ -10,6 +10,7 @@ router.get("/", async (req, res) => {
   res.json(users);
 });
 
+// GET a single user
 router.get("/:id", async (req, res) => {
   const user = await User.findOne({
     where: {
@@ -21,6 +22,7 @@ router.get("/:id", async (req, res) => {
   res.json(user);
 });
 
+// POST for login
 router.post("/login", (req, res) => {
   User.findOne({
     where: {
@@ -38,15 +40,18 @@ router.post("/login", (req, res) => {
       res.status(400).json({ message: "Incorrect password!" });
       return;
     }
+    // setting new session
     req.session.save(() => {
       req.session.userId = dbUserData.id;
       req.session.username = dbUserData.userName;
       req.session.loggedIn = true;
+      // redirecting to make sure session saves
       res.redirect("/");
     });
   });
 });
 
+// POST to create a new user
 router.post("/", async (req, res) => {
   const newUser = {
     userName: req.body.username,
@@ -54,16 +59,18 @@ router.post("/", async (req, res) => {
     password: req.body.password,
   };
   User.create(newUser).then((data) => {
+    // setting a new session
     req.session.save(() => {
       req.session.userId = data.id;
       req.session.username = data.userName;
       req.session.loggedIn = true;
-      console.log(req.session);
+      // redirecting to make sure session saves
       res.redirect("/");
     });
   });
 });
 
+// PUT a user
 router.put("/:id", async (req, res) => {
   const newUser = {
     userName: req.body.name,
@@ -83,6 +90,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+// DELETE a user
 router.delete("/:id", async (req, res) => {
   try {
     User.destroy({
@@ -96,6 +104,7 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+// POST for log out
 router.post("/logout", async (req, res) => {
   if (req.session.loggedIn) {
     await req.session.destroy(() => {

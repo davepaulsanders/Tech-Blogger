@@ -2,8 +2,10 @@ const postTitle = document.querySelector(".post-title");
 const postText = document.querySelector(".post-text");
 const postSubmit = document.querySelector(".post-submit");
 
+// Create a new post from dashboard
 const handlePostSubmit = async (event) => {
   event.preventDefault();
+  
   const title = postTitle.value.trim();
   const text = postText.value.trim();
   const response = await fetch("/api/posts", {

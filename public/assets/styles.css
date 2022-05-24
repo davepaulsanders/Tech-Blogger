@@ -1,18 +1,25 @@
+
+/* GENERAL TAGS */
+
 a {
     text-decoration: none!important;
     color: black!important;
-
 }
+
+/* POSTS */
 
 .posts {
     width: 40rem;
 }
-
 .card-header {
     border-bottom: 2px solid rgb(14,110,253);
-   
     
 }
+.post-date {
+    font-size: .75rem;
+}
+/* COMMENTS */
+
 .comment-user {
     font-size: .75rem;
     font-weight: bold;
@@ -37,7 +44,6 @@ a {
     overflow: scroll;
     padding: 0.5rem;
 }
-
 .comment-date {
     font-size: 0.65rem;
 }
@@ -56,7 +62,4 @@ a {
 .add-comment {
     padding-left: .5rem;
     font-size: 1rem;
-}
-.post-date {
-    font-size: .75rem;
 }

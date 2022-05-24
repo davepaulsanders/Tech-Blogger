@@ -3,10 +3,10 @@ const sequelize = require("../config/connection");
 const { Post, User, Comment } = require("../models");
 const withAuth = require("../utils/withAuth");
 
+// GET dashboard page route
 router.get("/", withAuth, (req, res) => {
   Post.findAll({
     where: {
-      // use the ID from the session
       userId: req.session.userId,
     },
     include: [
@@ -26,7 +26,7 @@ router.get("/", withAuth, (req, res) => {
     .then((dbPostData) => {
       // serialize data before passing to template
       const posts = dbPostData.map((post) => post.get({ plain: true }));
-      console.log(posts);
+
       res.render("dashboard", {
         posts,
         username: req.session.username,
@@ -39,6 +39,7 @@ router.get("/", withAuth, (req, res) => {
     });
 });
 
+// GET to edit a specific post
 router.get("/edit/:id", withAuth, (req, res) => {
   Post.findOne({
     where: {
@@ -73,6 +74,7 @@ router.get("/edit/:id", withAuth, (req, res) => {
     });
 });
 
+// GET to edit a specific comment
 router.get("/edit/comment/:id", withAuth, (req, res) => {
   Comment.findOne({
     where: {
@@ -92,6 +94,8 @@ router.get("/edit/comment/:id", withAuth, (req, res) => {
         comment,
         username: req.session.username,
         loggedIn: req.session.loggedIn,
+        // this variable determines whether a user created the comment
+        // they are editing, and stops them from updating if false
         created: comment.id === req.session.id ? true : false,
       });
     })

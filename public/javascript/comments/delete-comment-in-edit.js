@@ -1,7 +1,9 @@
-const id = document.querySelector(".comment-id").getAttribute("data-id");
 
+// deleting comment in comment edit window
 const handleDeleteCommentInEdit = async (event) => {
   event.preventDefault();
+  // getting comment id from data attribute
+  const id = document.querySelector(".comment-id").getAttribute("data-id");
 
   const response = await fetch(`/api/comments/${id}`, {
     method: "delete",

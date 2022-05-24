@@ -1,7 +1,8 @@
 const router = require("express").Router();
 const { Comment, User, Post } = require("../../models");
-const withAuth = require('../../utils/withAuth')
+const withAuth = require("../../utils/withAuth");
 
+// GET all comments
 router.get("/", async (req, res) => {
   const posts = await Comment.findAll({
     include: [{ model: User, attributes: ["userName", "email"] }, Post],
@@ -9,6 +10,7 @@ router.get("/", async (req, res) => {
   res.json(posts);
 });
 
+// GET a single comment
 router.get("/:id", async (req, res) => {
   const post = await Comment.findOne({
     where: {
@@ -19,6 +21,7 @@ router.get("/:id", async (req, res) => {
   res.json(post);
 });
 
+// POST a comment
 router.post("/", withAuth, async (req, res) => {
   const newComment = {
     commentText: req.body.text,
@@ -35,6 +38,7 @@ router.post("/", withAuth, async (req, res) => {
   }
 });
 
+// PUT a comment
 router.put("/:id", withAuth, async (req, res) => {
   const updatedComment = {
     commentText: req.body.commentText,
@@ -52,6 +56,7 @@ router.put("/:id", withAuth, async (req, res) => {
   }
 });
 
+// DELETE a comment
 router.delete("/:id", withAuth, async (req, res) => {
   try {
     Comment.destroy({
