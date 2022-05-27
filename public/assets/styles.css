@@ -7,6 +7,9 @@ a {
     text-decoration: none!important;
     color: #000!important;
 }
+a:hover {
+    color:#1BDECA!important;
+}
 
 i {
     color: #9F9F9F;
@@ -33,7 +36,9 @@ button {
     background-color: #B985FA!important;
     color: #000!important;
 }
-
+ul {
+    padding-top: 0.6rem;
+}
 button:hover {
     background-color: #9b69d8!important;
 }
@@ -41,7 +46,9 @@ button:hover {
     background-color: #383838!important;
 }
 .welcome {
+    margin-top: 0.9rem;
     color: #B985FA;
+    font-size: 1rem;
 }
 .navbar {
     background-color: #212121!important;
@@ -67,21 +74,23 @@ button:hover {
     width: 665px;
     color: #212121!important;
     margin-bottom: 1rem;
-    padding: 1rem 1rem 1.5rem 1rem;
+    padding: 1rem;
 }
 
 .post-title {
+    white-space: nowrap;
     color: #9F9F9F;
 }
 .post-date {
     color: #9F9F9F;
+    margin: 0.1rem 0.05rem 0 0.02rem;
+    font-size: .75rem;
 }
-
 .posts {
     width: 30rem;
     background-color: #383838;
     color: #9F9F9F;
-    padding-bottom: 1rem;
+    padding-bottom: 2rem;
     
 }
 .card {
@@ -93,12 +102,11 @@ button:hover {
 .card-header {
     border-bottom: 2px solid #B985FA;
 }
+.card-header:hover * {
+    color: #1BDECA;
+}
 .card-body {
     padding: 0.5rem 1rem;
-}
-
-.post-date {
-    font-size: .75rem;
 }
 .delete {
     background-color: red!important;
@@ -111,9 +119,12 @@ button .garbage {
 .comment-user {
     font-size: .75rem;
     font-weight: bold;
-    margin-top: .05rem;
-    margin-bottom: 0.05rem;
     color: #1BDECA;
+    margin: 0 0.05rem 0 0.25rem;
+}
+
+.comment-user-dash {
+    margin-right: 0.25rem!important;
 }
 .comment-text {
     font-size: .75rem;
