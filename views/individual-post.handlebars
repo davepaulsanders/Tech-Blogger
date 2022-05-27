@@ -1,4 +1,4 @@
-<a href="{{post.post.id}}">
+
 <div class="d-flex justify-content-center">
     <article class="card my-3 posts">
         <div class="card-header d-flex align-items-center justify-content-between">
@@ -18,7 +18,7 @@
             </div>
             {{/if}}
             {{#if loggedIn}}
-            <form action="">
+            <form>
                 <label for="adding comments" class="mt-2">Add a comment:</label>
                 <input type="text" style="color:#9F9F9F;" class="add-comment form-control mt-2 mb-2 w-100">
                 <button class="btn comment-submit w-100">Add comment</button>
@@ -27,5 +27,4 @@
         </div>
     </article>
 </div>
-</a>
 <script src="/javascript/comments/add-comment.js"></script>
