@@ -1,23 +1,22 @@
 
 {{!-- This page loads differently if the comment being viewed --}}
 {{!-- was not created by the user --}}
-
+<div class="d-flex justify-content-center w-100">
 {{#if created}}
-<div class="comment-edit-box mt-4">
-     <div data-id="{{comment.id}}"class=" comment-id d-flex justify-content-between align-items-center mt-2">
+<div class="comment-edit-box">
+     <div data-id="{{comment.id}}"class="comment-id d-flex justify-content-between align-items-center mt-2">
         <div class="d-flex flex-column align-items-start flex-grow-1">
             <div class="d-flex align-items-center justify-content-between">
             <i class="bi bi-person-circle p-1"></i>
             <p class="comment-user pt-1">{{comment.user.userName}}</p>
             </div>
-            <input type="text" placeholder="{{comment.commentText}}"class="comment-text w-100 p-2"></input>
+            <input type="text" style="color: #9F9F9F;" placeholder="{{comment.commentText}}" class="form-control comment-text w-100 p-2"></input>
         </div>
      </div>
-     <button class="btn btn-primary btn-sm save-comment">Save comment</button>
-    <button class="btn btn-danger btn-sm"><i class="delete-comment bi bi-trash-fill p-4"></i></button>
+     <button class="btn btn-sm save-comment">Save comment</button>
+    <button class="delete btn btn-sm"><i class="delete-comment bi bi-trash-fill p-4"></i></button>
     </div>
-    <script src="/javascript/update-comment.js"></script>
-    <script src="/javascript/delete-comment-in-edit.js"></script>
+    <script src="/javascript/comments/update-comment.js"></script>
     {{else}}
     <div class="comment-edit-box mt-4">
         <div data-id="{{comment.id}}"class=" comment-id d-flex justify-content-between align-items-center mt-2">
@@ -31,8 +30,9 @@
                 </div>
             </div>
         </div>
-    <button class="btn btn-danger btn-sm mt-1"><i class="delete-comment bi bi-trash-fill p-4"></i></button>
+    <button class="btn btn-sm mt-1"><i class="delete-comment garbage bi bi-trash-fill p-4"></i></button>
+    </div>
+    {{/if}}
     </div>
     <script src="/javascript/comments/delete-comment-in-edit.js"></script>
-    {{/if}}
     

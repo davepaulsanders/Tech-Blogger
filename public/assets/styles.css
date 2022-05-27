@@ -1,24 +1,105 @@
 
 /* GENERAL TAGS */
 body {
-    background-color: #9caec9;
+    background-color: #212121;
 }
 a {
     text-decoration: none!important;
-    color: black!important;
+    color: #000!important;
+}
+
+i {
+    color: #9F9F9F;
+}
+
+label {
+    color: #9F9F9F;
+}
+
+p {
+    color: #9F9F9F;
+}
+form .log-in-cards{
+    background-color: #383838!important;
+}
+input {
+    background-color: #383838!important;
+}
+textarea {
+    background-color: #383838!important;
+}
+
+button {
+    background-color: #B985FA!important;
+    color: #000!important;
+}
+
+button:hover {
+    background-color: #9b69d8!important;
+}
+.card {
+    background-color: #383838!important;
+}
+.welcome {
+    color: #B985FA;
+}
+.navbar {
+    background-color: #212121!important;
+}
+.navbar-brand {
+    color: #9F9F9F!important;
+}
+
+.nav-link {
+    color: #9F9F9F!important;
+}
+/* LOG IN */
+
+.log-in-cards {
+    max-width: 25rem;
 }
 
 /* POSTS */
+.create-post {
+    width: 665px;
+    color: #212121!important
+}
+
+.post-title {
+    color: #9F9F9F;
+}
+.post-date {
+    color: #9F9F9F;
+}
 
 .posts {
-    width: 40rem;
+    width: 30rem;
+    background-color: #383838;
+    color: #9F9F9F;
+    padding-bottom: 1rem;
+    
+}
+.card {
+    min-height: 150px;
+}
+.card-title {
+    color: #9F9F9F;
 }
 .card-header {
-    border-bottom: 2px solid rgb(14,110,253);
+    border-bottom: 2px solid #B985FA;
+}
+.card-body {
+    padding: 0.5rem 1rem;
 }
 
 .post-date {
     font-size: .75rem;
+}
+.delete {
+    background-color: red!important;
+}
+button .garbage {
+    color: #000!important;
 }
 /* COMMENTS */
 
@@ -32,35 +113,50 @@ a {
     font-size: .75rem;
     margin-bottom: 0.5rem;
 }
+
+.comment-title {
+    font-size: 0.75rem;
+}
 .comment-box {
-    border: 1px solid black;
+    border: 1px solid #9f9f9f;
     border-radius: 3px;
-    max-height: 8rem;
+    max-height: 10rem;
     overflow: auto;
     padding: 0.5rem;
 }
 .comment-edit-box {
-    border: 2px solid rgb(14,110,253);
-    border-radius: 3px;
-    max-height: 12rem;
-    overflow: scroll;
-    padding: 0.5rem;
+    width: 40rem;
+    padding: 0.5rem 1rem 1rem 1rem;
+    border-radius: 7px;
+    background-color: #383838;
 }
 .comment-date {
     font-size: 0.65rem;
+}
+
+.delete-comment {
+    color: #000;
 }
 .delete-comment:hover {
     color: red;
     cursor: pointer;
 }
 .individual-comment {
-    border-bottom: 1px solid black;
-    
+    border-radius: 7px;
 }
 .individual-comment:hover {
     cursor: pointer;
-    
+    background-color: #9F9f9f;
+
 }
+
+.individual-comment:hover p {
+    color: #000;
+}
+.individual-comment:hover i {
+    color: #000;
+}
+
 .add-comment {
     padding-left: .5rem;
     font-size: 1rem;

@@ -1,16 +1,16 @@
-
-<form class="d-flex justify-content-center">
-    <div class="card create-post mt-3 w-75 p-2 border-2 border-primary shadow-lg">
+<div class="row d-flex justify-content-center">
+<form class="create-post d-flex justify-content-center">
+    <div class="card create-post mt-3 w-75 p-2">
         <p class="fs-4">Create Post</p>
         <div class="form-group mb-2">
             <label for="post-title">Post Title</label>
-            <input class="form-control post-title" type="text" name="post-title" id="post-title">
+            <input class="form-control post-title" style="color: #9F9F9F" type="text" name="post-title" id="post-title">
         </div>
         <div class="form-group mb-2">
             <label for="post-text">Post Text</label>
-            <textarea class="post-text form-control" type="text" name="post-text" id="post-text"></textarea>
+            <textarea class="post-text form-control" style="color: #9F9F9F;" type="text" name="post-text" id="post-text"></textarea>
         </div>
-        <button class="post-submit btn btn-primary">Post</button>
+        <button class="post-submit btn">Post</button>
     </div>
 </form>
 <ul class="d-flex justify-content-center align-items-center flex-column m-0 p-0">
@@ -20,5 +20,6 @@
     </li>
     {{/each}}
 </ul>
+</div>
 <script src="/javascript/posts/create-post.js"></script>
 <script src="/javascript/posts/view-edit-post.js"></script>

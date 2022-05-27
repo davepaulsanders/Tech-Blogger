@@ -1,39 +1,41 @@
-<article class="card my-3 posts shadow-lg border-2 border-primary w-100">
-    <div data-id = {{post.id}} class="card-header d-flex justify-content-between">
-        <p class="fs-4">{{post.postTitle}} <span class="text-danger">(Editing)</span></p>
-        <div>
-            <i class="bi bi-person-circle pb-1 d-inline"></i>
-            <p class="d-inline post-date"> {{post.user.userName}} on {{format_date post.createdAt }}</p>
-            {{#if loggedIn}}
-            <div class="d-flex justify-content-end">
-                <button class="btn btn-primary btn-sm m-1 save">Save post</button>
-                <button class="btn btn-danger btn-sm m-1 delete"><i class="bi bi-trash-fill"></i></button>
-            </div>
-            {{/if}}
-        </div>
-    </div>
-    <div class="card-body">
-    <textarea class="post-content w-100 p-1">{{post.postText}}</textarea>
-    {{#if post.comments}}
-    <div class="comment-box">
-        {{#each post.comments as |comment|}}
-        <a href="/dashboard/edit/comment/{{id}}">
-        <div data-id="{{comment.id}}" class="individual-comment d-flex justify-content-between align-items-center mt-2">
+<div class="row d-flex justify-content-center">
+    <article class="card my-3 posts shadow-lg border-2 border-primary">
+        <div data-id = {{post.id}} class="card-header d-flex justify-content-between">
+            <p class="fs-4 post-title">{{post.postTitle}} <span class="text-danger">(Editing)</span></p>
             <div>
-                <i class="bi bi-person-circle d-inline"></i>
-                <p class="comment-user d-inline">{{comment.user.userName}}</p>
-                <p class="comment-text">{{comment.commentText}}</p>
-            </div>
-            <div>
-                <i class="delete-comment bi bi-trash-fill p-4"></i>
+                <i class="bi bi-person-circle pb-1 d-inline"></i>
+                <p class="d-inline post-date"> {{post.user.userName}} on {{format_date post.createdAt }}</p>
+                {{#if loggedIn}}
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-sm m-1 save">Save post</button>
+                    <button class="btn btn-sm m-1 delete"><i class="bi bi-trash-fill garbage"></i></button>
+                </div>
+                {{/if}}
             </div>
         </div>
-        </a>
-        {{/each}}
-    </div>
-    {{/if}}
-    </div>
-</article>
+        <div class="card-body">
+        <textarea class="post-content w-100 p-1" style="color: #9f9f9f">{{post.postText}}</textarea>
+        {{#if post.comments}}
+        <div class="comment-box">
+            {{#each post.comments as |comment|}}
+            <a href="/dashboard/edit/comment/{{id}}">
+            <div data-id="{{comment.id}}" class="individual-comment d-flex justify-content-between align-items-center p-1">
+                <div>
+                    <i class="bi bi-person-circle d-inline"></i>
+                    <p class="comment-user d-inline">{{comment.user.userName}}</p>
+                    <p class="comment-text">{{comment.commentText}}</p>
+                </div>
+                <div>
+                    <i class="delete-comment bi bi-trash-fill p-4"></i>
+                </div>
+            </div>
+            </a>
+            {{/each}}
+        </div>
+        {{/if}}
+        </div>
+    </article>
+</div>
 <script src="/javascript/posts/delete-post.js"></script>
 <script src="/javascript/posts/update-post.js"></script>
 <script src="/javascript/comments/delete-comment-from-post.js"></script>

@@ -16,7 +16,7 @@
                 <div>
                     <a class="x-large navbar-brand fs-1" href="/">Tech Blog</a>
                     {{#if loggedIn}}
-                    <p class="m-2 text-primary">Welcome {{username}}!</p>
+                    <p class="m-2 welcome">Welcome {{username}}!</p>
                     {{/if}}
                 </div>
                 <ul class="nav">
@@ -36,7 +36,7 @@
                 </ul>
             </nav>
         </header>
-        <main class="container justify-content-center">
+        <main class="container">
             {{{ body }}}
         </main>
         {{#if loggedIn}}
