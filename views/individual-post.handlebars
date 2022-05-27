@@ -7,8 +7,8 @@
         </div>
         <div class="card-body">
             <p class="mb-5">{{post.postText}}</p>
-                <p class = "mb-0" style="font-size: 0.75rem">Comments:</p>
             {{#if post.comments}}
+            <p class = "mb-0" style="font-size: 0.75rem">Comments:</p>
             <div class="comment-box">
                 {{#each post.comments as |comment|}}
                 <p class="comment-user d-inline-block">{{comment.user.userName}}</p>
