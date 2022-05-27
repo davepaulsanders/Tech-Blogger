@@ -21,10 +21,19 @@
                 </div>
                 <ul class="nav">
                     <li class="nav-item">
+                        {{#if dashboard}}
+                        <a class="dashboard active nav-link fs-5" href="/dashboard">Dashboard</a>
+                        {{else}}
                         <a class="dashboard nav-link fs-5" href="/dashboard">Dashboard</a>
+                        {{/if}}
                     </li>
                     <li class="nav-item">
+
+                        {{#if homepage}}
+                        <a class="homepage nav-link active fs-5" href="/">Homepage</a>
+                        {{else}}
                         <a class="homepage nav-link fs-5" href="/">Homepage</a>
+                        {{/if}}
                     </li>
                     {{#if loggedIn}}
                     <li class="nav-item">

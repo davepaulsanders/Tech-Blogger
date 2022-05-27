@@ -31,6 +31,7 @@ router.get("/", withAuth, (req, res) => {
         posts,
         username: req.session.username,
         loggedIn: req.session.loggedIn,
+        dashboard: true
       });
     })
     .catch((err) => {

@@ -5,8 +5,8 @@
             <p class="post-date">Created by: {{post.user.userName}} on {{format_date post.createdAt }}</p>
         </div>
         <div class="card-body">
-            <p>{{post.postText}}</p>
-                <p>Comments:</p>
+            <p class="mb-5">{{post.postText}}</p>
+                <p class = "mb-0" style="font-size: 0.75rem">Comments:</p>
             {{#if post.comments}}
             <div class="comment-box">
                 {{#each post.comments as |comment|}}
@@ -18,7 +18,8 @@
             {{/if}}
             {{#if loggedIn}}
             <form action="">
-                <input type="text" style="color: #9F9F9F;" class="add-comment form-control mt-2 mb-2 w-100">
+                <label for="adding comments" class="mt-2">Add a comment:</label>
+                <input type="text" style="color:#9F9F9F;" class="add-comment form-control mt-2 mb-2 w-100">
                 <button class="btn comment-submit w-100">Add comment</button>
             </form>
             {{/if}}

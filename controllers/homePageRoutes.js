@@ -13,6 +13,7 @@ router.get("/", (req, res) => {
       allPosts,
       username: req.session.username,
       loggedIn: req.session.loggedIn,
+      homepage: true,
     });
   });
 });
@@ -39,7 +40,11 @@ router.get("/post/:id", async (req, res) => {
   });
   post = post.get({ plain: true });
   console.log(post);
-  res.render("individual-post", { post, username: req.session.username, loggedIn: req.session.loggedIn });
+  res.render("individual-post", {
+    post,
+    username: req.session.username,
+    loggedIn: req.session.loggedIn,
+  });
 });
 
 // GET route for login and sign up page
