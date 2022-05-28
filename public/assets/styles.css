@@ -105,7 +105,7 @@ button:hover {
 .card-header {
     border-bottom: 2px solid #B985FA;
 }
-.card-header .post-title{
+.card-header .post-title:hover{
     color: #1BDECA;
     cursor: pointer;
 }
