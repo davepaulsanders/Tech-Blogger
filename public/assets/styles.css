@@ -42,9 +42,6 @@ ul {
 button:hover {
     background-color: #9b69d8!important;
 }
-.card {
-    background-color: #383838!important;
-}
 .welcome {
     margin-top: 0.9rem;
     color: #B985FA;
@@ -71,7 +68,7 @@ button:hover {
 }
 /* POSTS */
 .create-post {
-    width: 665px;
+    max-width: 32rem;
     color: #212121!important;
     margin-bottom: 1rem;
     padding: 1rem;
@@ -95,12 +92,14 @@ button:hover {
 }
 
 .avatar {
-   padding: 0.25rem;
+   padding: 0.05rem;
    position: relative;
    top: -1px;
 }
 .card {
     min-height: 150px;
+    background-color: #383838!important;
+
 }
 .card-title {
     color: #9F9F9F;

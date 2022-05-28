@@ -1,6 +1,6 @@
 <div class="row d-flex justify-content-center">
 <form class="create-post d-flex justify-content-center">
-    <div class="card create-post mt-3 w-75">
+    <div class="card create-post mt-3 w-100">
         <p class="fs-4">Create Post</p>
         <div class="form-group mb-2">
             <label for="post-title">Post Title</label>
@@ -13,9 +13,9 @@
         <button class="post-submit btn mt-2">Post</button>
     </div>
 </form>
-<ul class="d-flex justify-content-center align-items-center flex-column m-0 p-0">
+<ul class="d-flex justify-content-center align-items-center flex-column m-1">
     {{#each posts as |post| }}
-    <li class="list-unstyled d-flex justify-content-center w-75">
+    <li class="list-unstyled d-flex justify-content-center w-100">
         {{> postInfo loggedIn="loggedIn"}}
     </li>
     {{/each}}
