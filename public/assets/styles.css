@@ -73,7 +73,9 @@ button:hover {
     margin-bottom: 1rem;
     padding: 1rem;
 }
-
+.bi-person-circle {
+    padding-bottom: 0.07rem;
+}
 .post-title {
     white-space: nowrap;
     color: #9F9F9F;
