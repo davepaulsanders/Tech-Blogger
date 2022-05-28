@@ -10,6 +10,8 @@ const handleUpdatePost = async (event) => {
     window.location.href.split("/")[window.location.href.split("/").length - 1];
   
   if (text.length === 0) {
+    errorText.classList.remove('d-none')
+    errorText.classList.add = "d-block"
     errorText.textContent = "Please fill out field!"
     return
   }
