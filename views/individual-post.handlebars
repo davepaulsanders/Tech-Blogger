@@ -20,11 +20,12 @@
             {{#if loggedIn}}
             <form>
                 <label for="adding comments" class="mt-2">Add a comment:</label>
+                <p class="error text-danger"></p>
                 <input type="text" style="color:#9F9F9F;" class="add-comment form-control mt-2 mb-2 w-100">
                 <button class="btn comment-submit w-100">Add comment</button>
             </form>
+<script src="/javascript/comments/add-comment.js"></script>
             {{/if}}
         </div>
     </article>
 </div>
-<script src="/javascript/comments/add-comment.js"></script>

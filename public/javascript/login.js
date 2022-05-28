@@ -27,7 +27,7 @@ async function loginFormHandler(event) {
       badLogIn.textContent = "Incorrect email/password combination";
     }
   } else {
-    badLogIn.textContent = "Please fill out all fields"
+    badLogIn.textContent = "Please fill out all fields";
   }
 }
 
@@ -41,6 +41,11 @@ async function signUpFormHandler(event) {
   if (!username || !email || !password) {
     badSignUp.textContent = "Please fill out all fields";
   }
+  if (password.length < 6) {
+    badSignUp.textContent = "Password must be at least 6 characters!"
+    return
+  }
+  
   if (email && password) {
     const response = await fetch("/api/users", {
       method: "post",
@@ -51,6 +56,7 @@ async function signUpFormHandler(event) {
       }),
       headers: { "Content-Type": "application/json" },
     });
+    
     if (response.ok) {
       document.location.replace("/");
     } else {

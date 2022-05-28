@@ -28,38 +28,43 @@ router.post("/login", (req, res) => {
     where: {
       email: req.body.email,
     },
-  }).then((dbUserData) => {
-    if (!dbUserData) {
-      res.status(400).json({ message: "No user with that email address!" });
-      return;
-    }
+  })
+    .then((dbUserData) => {
+      if (!dbUserData) {
+        res.status(400).json({ message: "No user with that email address!" });
+        return;
+      }
 
-    const validPassword = dbUserData.checkPassword(req.body.password);
+      const validPassword = dbUserData.checkPassword(req.body.password);
 
-    if (!validPassword) {
-      res.status(400).json({ message: "Incorrect password!" });
-      return;
-    }
-    // setting new session
-    req.session.save(() => {
-      req.session.userId = dbUserData.id;
-      req.session.username = dbUserData.userName;
-      req.session.loggedIn = true;
-      // redirecting to make sure session saves
-      res.redirect("/");
+      if (!validPassword) {
+        res.status(400).json({ message: "Incorrect password!" });
+        return;
+      }
+      // setting new session
+      req.session.save(() => {
+        req.session.userId = dbUserData.id;
+        req.session.username = dbUserData.userName;
+        req.session.loggedIn = true;
+        // redirecting to make sure session saves
+        res.redirect("/");
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(500);
     });
-  });
 });
 
 // POST to create a new user
 router.post("/", async (req, res) => {
-  try {
-    const newUser = {
-      userName: req.body.username,
-      email: req.body.email,
-      password: req.body.password,
-    };
-    User.create(newUser).then((data) => {
+  const newUser = {
+    userName: req.body.username,
+    email: req.body.email,
+    password: req.body.password,
+  };
+  User.create(newUser)
+    .then((data) => {
       // setting a new session
       req.session.save(() => {
         req.session.userId = data.id;
@@ -68,10 +73,11 @@ router.post("/", async (req, res) => {
         // redirecting to make sure session saves
         res.redirect("/");
       });
+    })
+    .catch((err) => {
+      console.log(err.message);
+      res.sendStatus(500);
     });
-  } catch (err) {
-    console.group(err);
-  }
 });
 
 // PUT a user

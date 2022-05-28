@@ -7,8 +7,9 @@
      <div data-id="{{comment.id}}"class="comment-id d-flex justify-content-between align-items-center mt-2">
         <div class="d-flex flex-column align-items-start flex-grow-1">
             <div class="d-flex align-items-center justify-content-between">
-            <i class="bi bi-person-circle p-1"></i>
+            <i class="bi bi-person-circle"></i>
             <p class="comment-user pt-1">{{comment.user.userName}}</p>
+            <p class="error fs-6 text-danger p-2 m-0"></p>
             </div>
             <input type="text" style="color: #9F9F9F;" placeholder="{{comment.commentText}}" class="form-control comment-text w-100 p-2"></input>
         </div>

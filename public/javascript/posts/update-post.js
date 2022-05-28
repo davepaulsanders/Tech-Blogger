@@ -1,5 +1,5 @@
 const saveButton = document.querySelector(".save");
-
+const errorText = document.querySelector('.error-text')
 
 // update post text
 const handleUpdatePost = async (event) => {
@@ -8,6 +8,11 @@ const handleUpdatePost = async (event) => {
   // getting id from window url
   const id =
     window.location.href.split("/")[window.location.href.split("/").length - 1];
+  
+  if (text.length === 0) {
+    errorText.textContent = "Please fill out field!"
+    return
+  }
   const response = await fetch(`/api/posts/${id}`, {
     method: "put",
     body: JSON.stringify({

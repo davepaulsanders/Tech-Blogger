@@ -1,6 +1,6 @@
 const submitComment = document.querySelector(".comment-submit");
 const text = document.querySelector(".comment-text");
-
+const errorText = document.querySelector('.error')
 // Request to add a comment
 const handleCommentSubmit = async (event) => {
   event.preventDefault();
@@ -8,7 +8,10 @@ const handleCommentSubmit = async (event) => {
   // getting post id from the window url
   const postId =
     window.location.href.split("/")[window.location.href.split("/").length - 1];
-
+  if (text.length === 0) {
+    errorText.textContent = "Please fill out field!"
+    return
+  }
   const response = await fetch("/api/comments", {
     method: "post",
     body: JSON.stringify({
