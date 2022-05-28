@@ -53,21 +53,25 @@ router.post("/login", (req, res) => {
 
 // POST to create a new user
 router.post("/", async (req, res) => {
-  const newUser = {
-    userName: req.body.username,
-    email: req.body.email,
-    password: req.body.password,
-  };
-  User.create(newUser).then((data) => {
-    // setting a new session
-    req.session.save(() => {
-      req.session.userId = data.id;
-      req.session.username = data.userName;
-      req.session.loggedIn = true;
-      // redirecting to make sure session saves
-      res.redirect("/");
+  try {
+    const newUser = {
+      userName: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
+    };
+    User.create(newUser).then((data) => {
+      // setting a new session
+      req.session.save(() => {
+        req.session.userId = data.id;
+        req.session.username = data.userName;
+        req.session.loggedIn = true;
+        // redirecting to make sure session saves
+        res.redirect("/");
+      });
     });
-  });
+  } catch (err) {
+    console.group(err);
+  }
 });
 
 // PUT a user
