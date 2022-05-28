@@ -73,26 +73,21 @@ button:hover {
     margin-bottom: 1rem;
     padding: 1rem;
 }
-.bi-person-circle {
-    padding-bottom: 0.13rem;
-}
 .post-title {
     white-space: nowrap;
     color: #9F9F9F;
 }
 .post-date {
     color: #9F9F9F;
-    margin: 0.1rem 0.05rem 0 0.02rem;
     font-size: .75rem;
 }
+
 .posts {
     width: 30rem;
     background-color: #383838;
     color: #9F9F9F;
     padding-bottom: 2rem;
-    
 }
-
 .avatar {
     font-size: 1rem;
    padding: 0.05rem;
@@ -146,11 +141,7 @@ button .garbage {
     font-size: .75rem;
     font-weight: bold;
     color: #1BDECA;
-    margin: 0 0.05rem 0 0.25rem;
-}
-
-.comment-user-dash {
-    margin-right: 0.25rem!important;
+    margin: 0 0 0 0.3rem;
 }
 .comment-text {
     font-size: .75rem;

@@ -11,7 +11,8 @@
             <p class = "mb-0" style="font-size: 0.75rem">Comments:</p>
             <div class="comment-box">
                 {{#each post.comments as |comment|}}
-                <p class="comment-user d-inline-block">{{comment.user.userName}}</p>
+                <i class="bi bi-person-circle pb-1 d-inline"></i>
+                <p class="comment-user d-inline-block m-0">{{comment.user.userName}}</p>
                 <span class="comment-date">{{format_date comment.createdAt}}</span>
                 <p class="comment-text">{{comment.commentText}}</p>
                 {{/each}}
