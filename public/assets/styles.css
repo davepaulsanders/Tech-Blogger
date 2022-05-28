@@ -107,17 +107,35 @@ button:hover {
 .card-header {
     border-bottom: 2px solid #B985FA;
 }
-.card-header:hover * {
+.card-header .post-title{
     color: #1BDECA;
+    cursor: pointer;
 }
 .card-body {
     padding: 0.5rem 1rem;
 }
 .delete {
     background-color: red!important;
+    color: #000!important
+}
+.edit-delete:hover{
+    background-color: red!important;
+}
+.edit-delete:hover * {
+    color: #000;
+}
+.garbage-delete {
+    color: #000;
+    background-color: red;
+}
+.garbage-delete:hover {
+    color: #000;
 }
 button .garbage {
     color: #000!important;
+}
+.garbage:hover {
+    color: red !important;
 }
 /* COMMENTS */
 
@@ -155,7 +173,11 @@ button .garbage {
 .comment-date {
     font-size: 0.65rem;
 }
-
+.comment-heads-up {
+    font-size: 0.75rem;
+    margin: 0;
+    color: #B985FA
+}
 .delete-comment {
     color: #000;
 }
