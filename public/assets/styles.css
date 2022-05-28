@@ -93,6 +93,12 @@ button:hover {
     padding-bottom: 2rem;
     
 }
+
+.avatar {
+   padding: 0.25rem;
+   position: relative;
+   top: -1px;
+}
 .card {
     min-height: 150px;
 }
