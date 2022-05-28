@@ -18,7 +18,7 @@ This full stack application is a fictional tech blog, allowing users to log in a
 
 ## Live Site
 
-The site is also viewable [here](https://daves-tech-blog.herokuapp.com/).
+The site is also viewable [here](https://tech-nically.herokuapp.com/).
 
 ## Technologies
 
