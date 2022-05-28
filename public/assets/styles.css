@@ -94,6 +94,7 @@ button:hover {
 }
 
 .avatar {
+    font-size: 1rem;
    padding: 0.05rem;
    position: relative;
    top: -1px;
