@@ -46,8 +46,8 @@ router.post("/login", (req, res) => {
         req.session.userId = dbUserData.id;
         req.session.username = dbUserData.userName;
         req.session.loggedIn = true;
-        // redirecting to make sure session saves
-        res.redirect("/");
+        
+        res.send({user: dbUserData, message: "Logged in"});
       });
     })
     .catch((err) => {
@@ -70,8 +70,8 @@ router.post("/", async (req, res) => {
         req.session.userId = data.id;
         req.session.username = data.userName;
         req.session.loggedIn = true;
-        // redirecting to make sure session saves
-        res.redirect("/");
+
+        res.send({user: newUser, message: "Logged in"});
       });
     })
     .catch((err) => {
