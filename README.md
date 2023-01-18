@@ -18,7 +18,7 @@ This full stack application is a fictional tech blog, allowing users to log in a
 
 ## Live Site
 
-The site is also viewable [here](https://tech-nically.herokuapp.com/).
+The site is also viewable [here](https://technically.onrender.com/).  The MYSQL instance is hosted on Amazon RDS and the app server is hosted on Render.
 
 ## Technologies
 
@@ -29,5 +29,5 @@ This app uses:
 - Node
 - MYSQL
 - Sequelize ORM
-- Heroku for deployment
-- JawsDB for hosted database
+- Render for deployment
+- Amazon RDS
